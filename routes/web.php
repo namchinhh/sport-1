@@ -17,10 +17,6 @@ Route::get('/test', function () {
     return view('vendors.shared.master');
 });
 
-Route::get('/vendorlist', 'Vendor\VendorsController@getHomeData');
-
-
-
 Auth::routes();
 
 Route::get('/getPlaces/{type?}', 'User\UserController@getPlaces')->name('getPlaces');
