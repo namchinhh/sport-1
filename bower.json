@@ -16,6 +16,6 @@
   ],
   "dependencies": {
     "template_delux_hotel": "*",
-    "template_admin_gentelella":"*"
+    "admin-lte":"*"
   }
 }

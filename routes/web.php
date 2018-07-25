@@ -15,6 +15,20 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/a', function () {
+    return view('vendors.shared.master');
+});
+
+Route::get('/test', function () {
+    return view('vendors.products.edit');
+});
+
+Route::get('/test/{id?}', function () {
+    return view('vendors.products.edit');
+});
+
+Route::post('/test', 'Vendor\ProductController@store')->name('storeProduct');
+
 Auth::routes();
 
 Route::get('users/login', [
@@ -23,6 +37,8 @@ Route::get('users/login', [
 ]);
 
 Route::group(array('prefix' => 'vendor', 'namespace' => 'Vendor', 'middleware' => 'vendor'), function () {
+
+    Route::get('/', 'VendorsController@home');
 
     Route::get('/login', 'VendorsController@showLoginForm');
 
