@@ -12,70 +12,70 @@
                 <div class="box-header with-border">
                     <h3 class="box-title">{{ __('Thêm sân mới') }}</h3>
                 </div>
-                <!-- /.box-header -->
+                @if(session('error'))
+                    <div class="alert alert-danger alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <h4><i class="icon fa fa-ban"></i>{{ __('Error!') }}</h4>
+                        {{ session('error') }}
+                    </div>
+                @endif
+                @if(session('success'))
+                    <div class="alert alert-success alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <i class="icon fa fa-check"></i>
+                        {{ session('success') }}
+                    </div>
+                @endif
+            <!-- /.box-header -->
                 <!-- form start -->
-                <form role="form">
-                    <div class="box-body">
-                        <div class="form-group">
-                            <label>loại mô hình kinh doanh:</label>
-                            <select class="form-control">
-                                <option>Sân Bóng</option>
-                                <option>Sân Tennis</option>
-                                <option>Bể Bơi</option>
-                            </select>
-                        </div>
-
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox">
-                                Hoạt động
-                            </label>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="exampleInputFile">Ảnh Thumbnail</label>
-                            <input type="file" id="exampleInputFile">
-
-                            <p class="help-block">Example block-level help text here.</p>
-                        </div>
-
-                        <div class="box-body pad">
-                            <form>
-                    <textarea id="editor1" name="editor1" rows="10" cols="80">
-                                            This is my textarea to be replaced with CKEditor.
-                    </textarea>
-                            </form>
-                        </div>
-                    </div>
-                    <!-- /.box-body -->
-
-                    <div class="box-footer">
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                    </div>
-                </form>
-            </div>
-            <!-- /.box -->
-
-            <div class="box box-danger">
-                <div class="box-header with-border">
-                    <h3 class="box-title">Different Width</h3>
-                </div>
+                {!! Form::open([
+                    'method' => 'POST',
+                    'files' => 'true',
+                    'route' => 'storeProduct'
+                ]) !!}
                 <div class="box-body">
-                    <div class="row">
+                    {!! Form::hidden('vendorId', $vendorId) !!}
+                    <div class="form-group row">
                         <div class="col-xs-3">
-                            <input type="text" class="form-control" placeholder=".col-xs-3">
-                        </div>
-                        <div class="col-xs-4">
-                            <input type="text" class="form-control" placeholder=".col-xs-4">
-                        </div>
-                        <div class="col-xs-5">
-                            <input type="text" class="form-control" placeholder=".col-xs-5">
+                            {!! Form::label('type', trans('Loại mô hình: ')) !!}
+                            {!! Form::select(
+                                'type',
+                                ['1' => trans('Sân Bóng'), '2' => trans('Sân Tennis'), '3' => trans('Bể Bơi')],
+                                null,
+                                ['class'=>'form-control']
+                            ) !!}
                         </div>
                     </div>
+
+                    <div class="form-group row">
+                        <div class="col-xs-3">
+                            {!! Form::label('status', trans('Hoạt động: ')) !!}
+                            {!! Form::checkbox('status', '1', ['class'=>'js-switch', 'checked'=>"checked"]) !!}
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        {!! Form::label('thumbnail', trans('Ảnh Thumbnail: ')) !!}
+                        {!! Form::file('thumbnail', ['accept' => 'image/*', 'required'=>'true']) !!}
+                    </div>
+
+                    <div class="box-body pad">
+                        {!! Form::label('description', trans('Mô tả: ')) !!}
+                        {!! Form::textarea('description', null, ['class'=>'form-control']) !!}
+                    </div>
+                    <div class="form-group">
+                        {!! Form::label('address', trans('Địa Chỉ: ')) !!}
+                        {!! Form::text('address', null, ['class'=>'form-control', 'required'=>'true']) !!}
+                    </div>
+                    {{ Form::hidden('images', '') }}
                 </div>
                 <!-- /.box-body -->
+
+                <div class="box-footer">
+                    {!! Form::submit( trans('Lưu'), ['class' => 'btn btn-primary']) !!}
+                </div>
+                {!! Form::close() !!}
             </div>
-            <!-- /.box -->
         </div>
         <!--/.col (left) -->
     </div>
@@ -87,7 +87,7 @@
         $(function () {
             // Replace the <textarea id="editor1"> with a CKEditor
             // instance, using default configuration.
-            CKEDITOR.replace('editor1');
+            CKEDITOR.replace('description');
         })
     </script>
 @endsection

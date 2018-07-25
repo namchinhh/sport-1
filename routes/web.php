@@ -56,7 +56,7 @@ Route::group(array('prefix' => 'user', 'namespace' => 'User', 'middleware' => 'u
 
 });
 
-Route::get('/product', 'Vendor\ProductController@new')->name('newProduct');
+Route::get('/product', 'Vendor\ProductController@newProduct')->name('newProduct');
 
 Route::get('/product/{id?}', 'Vendor\ProductController@editProduct')->name('editProduct');
 
