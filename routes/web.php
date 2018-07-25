@@ -15,12 +15,24 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/test', function () {
+    return view('vendors.shared.master');
+});
+
+Route::get('/vendorlist', 'Vendor\VendorsController@getHomeData');
+
+
+
 Auth::routes();
 
 Route::get('users/login', [
     'as' => 'login',
     'uses' => 'Auth\LoginController@showLoginForm'
 ]);
+
+Route::get('/vendorLogin', 'Auth\LoginController@showVendorLoginForm');
+
+Route::get('/vendorRegister','Auth\LoginController@register');
 
 Route::group(array('prefix' => 'vendor', 'namespace' => 'Vendor', 'middleware' => 'vendor'), function () {
 
