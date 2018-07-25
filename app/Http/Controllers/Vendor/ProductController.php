@@ -22,21 +22,14 @@ class ProductController extends Controller
 
     public function editProduct($id)
     {
-        $product = Product::whereId($id)->firstOrFail();
-        return view('vendors.products.edit',compact('product'));
+        $product = Product::whereId($id)->findOrFail();
+
+        return view('vendors.products.edit', compact('product'));
     }
 
     public function store(ProductFormRequest $request)
     {
-        $product = new Product(array(
-            'type' => $request->get('type'),
-            'description' => $request->get('description'),
-            'address' => $request->get('address'),
-            'thumbnail' => $request->get('thumbnail'),
-            'images' => $request->get('images'),
-        ));
-
-        $product->save();
+        Product::create($request->all());
 
         return redirect('/products')->with('status', __('Tạo thành công!'));
     }
