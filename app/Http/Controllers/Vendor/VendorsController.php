@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Vendor;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 
 class VendorsController extends Controller
 {
@@ -16,6 +17,16 @@ class VendorsController extends Controller
     public function home()
     {
         return view('index');
+    }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function getHomeData()
+    {
+        $products = DB::table('products')->get();
+
+        return view('vendors.products.list', compact('products'));
     }
 
     public function showLoginForm()

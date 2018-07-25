@@ -13,6 +13,14 @@
 
 Route::get('/', 'HomeController@index')->name('getHome');
 
+Route::get('/test', function () {
+    return view('vendors.shared.master');
+});
+
+Route::get('/vendorlist', 'Vendor\VendorsController@getHomeData');
+
+
+
 Auth::routes();
 
 Route::get('/getPlaces/{type?}', 'User\UserController@getPlaces')->name('getPlaces');
@@ -63,6 +71,10 @@ Route::get('users/login', [
     'as' => 'login',
     'uses' => 'Auth\LoginController@showLoginForm'
 ]);
+
+Route::get('/vendorLogin', 'Auth\LoginController@showVendorLoginForm');
+
+Route::get('/vendorRegister','Auth\LoginController@register');
 
 Route::group(array('prefix' => 'vendor', 'namespace' => 'Vendor', 'middleware' => 'vendor'), function () {
 
