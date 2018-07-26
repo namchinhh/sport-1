@@ -16,8 +16,11 @@ class Vendor
      */
     public function handle($request, Closure $next)
     {
+//        if(!Auth::check()){
+//            return redirect('vendor/login');
+//        }
         if(!Auth::check()){
-            return redirect('vendor/home');
+            return redirect('/vendorLogin');
         }
         return $next($request);
     }

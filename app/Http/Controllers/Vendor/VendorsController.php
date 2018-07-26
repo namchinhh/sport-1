@@ -7,13 +7,15 @@ use App\Http\Controllers\Controller;
 
 class VendorsController extends Controller
 {
+    /**
+     * Where to redirect users after login.
+     *
+     * @var string
+     */
     //
     public function home(){
         return view('welcome');
     }
 
-    public function showLoginForm(){
-        dd('show');
-        return view('auth/vendorLogin');
-    }
+
 }

@@ -39,4 +39,8 @@ class LoginController extends Controller
     public function showVendorLoginForm(){
         return view('auth.vendorLogin');
     }
+
+    public function register(){
+        return view('auth.vendorRegister');
+    }
 }
