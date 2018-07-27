@@ -21,6 +21,10 @@ Route::get('/product/{id?}', 'Vendor\ProductController@editProduct')->name('edit
 
 Route::post('/product', 'Vendor\ProductController@store')->name('storeProduct');
 
+Route::post('/uploadProductImage', 'Vendor\UploadController@postImages')->name('uploadProductImage');
+
+Route::post('/removeProductImage', 'Vendor\UploadController@removeImages')->name('removeProductImage');
+
 Auth::routes();
 
 Route::get('users/login', [
