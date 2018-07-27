@@ -35,5 +35,10 @@ Route::group(array('prefix' => 'vendor','namespace' => 'Vendor' , 'middleware' =
     ,
     function () {
         Route::get('/','VendorsController@home');
+
+        Route::get('/login', "VendorsController@showLoginForm");
+
         Route::get('/logout',"VendorsController@logout");
+
+
     });
