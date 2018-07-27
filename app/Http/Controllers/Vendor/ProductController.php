@@ -12,13 +12,15 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductFormRequest;
 use App\Option;
 use App\Product;
+use Illuminate\Support\Facades\Redirect;
 
 class ProductController extends Controller
 {
 
     public function newProduct()
     {
-        //testing with vendor 1
+//        $vendorId = Auth::user()->id;
+        //test with vendor id = 1
         $vendorId = 1;
 
         return view('vendors.products.edit', compact('vendorId'));
@@ -26,16 +28,28 @@ class ProductController extends Controller
 
     public function editProduct($id)
     {
-        //testing with vendor 1
+//        $vendorId = Auth::user()->id;
+        //test with vendor id = 1
         $vendorId = 1;
-        $product = Product::whereId($id)->findOrFail();
+        $product = Product::findOrFail($id);
+        $options = Option::whereProductId($id)->get();
+        $images = $product->images;
 
-        return view('vendors.products.edit', compact(['product', 'vendorId']));
+        return view('vendors.products.edit', compact(['product', 'vendorId', 'options', 'images']));
     }
 
     public function store(ProductFormRequest $request)
     {
         try {
+            $options = $request->options;
+            if (!$options) {
+                return redirect()->back()->with('error', __('Thiếu lựa chọn cho sân.'));
+            }
+
+            $productId = $request->productId;
+            if ($productId) {
+                $product = Product::whereId($productId);
+            }
             $productData = [
                 'vendor_id' => $request->vendorId,
                 'type' => $request->type,
@@ -43,20 +57,46 @@ class ProductController extends Controller
                 'status' => $request->status,
                 'address' => $request->address
             ];
-            $photoName = time() . '.' . $request->thumbnail->getClientOriginalExtension();
-            $request->thumbnail->move(public_path('product_photo/thumbnail'), $photoName);
-            $productData['thumbnail'] = $photoName;
+            if ($request->thumbnail) {
+                $photoName = time() . '.' . $request->thumbnail->getClientOriginalExtension();
+                $request->thumbnail->move(public_path('product_photo/thumbnail'), $photoName);
+                $productData['thumbnail'] = $photoName;
+                if ($productId) {
+                    $image_path = "/product_photo/thumbnail/" . $product->thumbnail;
+                    if (File::exists($image_path)) {
+                        File::delete($image_path);
+                    }
+                }
+            }
             if (!@$productData['images']) {
                 $productData['images'] = '';
             }
-            Product::create($productData);
-
+            if ($productId) {
+                $product->update($productData);
+                $successMessage = __('Lưu thành công!');
+            } else {
+                $productId = Product::create($productData)->id;
+                $successMessage = __('Tạo thành công!');
+            }
+            for ($i = 0; $i < count($options['title']); $i++) {
+                $optionsData = [
+                    'product_id' => $productId,
+                    'title' => $options['title'][$i],
+                    'price' => $options['price'][$i],
+                    'description' => $options['description'][$i]
+                ];
+                if ($options['id'][$i]) {
+                    Option::whereId($options['id'][$i])->update($optionsData);
+                } else {
+                    Option::create($optionsData);
+                }
+            }
         } catch (\Exception $exception) {
             $error = $exception->getMessage() . "\n File: " . $exception->getFile() . "\n Line: " . $exception->getLine();
 
             return redirect()->back()->with('error', $error);
         }
 
-        return redirect()->back()->with('success', __('Tạo thành công!'));
+        return Redirect::route('editProduct', $productId)->with('success', $successMessage);
     }
 }

@@ -33,6 +33,12 @@ Route::get('/getPost/{id?}/show', 'User\UserController@getPostDetail')->name('ge
 
 Route::post('/product', 'Vendor\ProductController@store')->name('storeProduct');
 
+Route::post('/uploadProductImage', 'Vendor\UploadController@postImages')->name('uploadProductImage');
+
+Route::post('/removeProductImage', 'Vendor\UploadController@removeImages')->name('removeProductImage');
+
+Auth::routes();
+
 Route::get('/login', 'Auth\LoginController@getLogin');
 
 Route::post('/login', 'Auth\LoginController@postLogin');
@@ -56,21 +62,10 @@ Route::group(array('prefix' => 'user', 'namespace' => 'User', 'middleware' => 'u
 
 });
 
-Route::get('/product', 'Vendor\ProductController@newProduct')->name('newProduct');
-
-Route::get('/product/{id?}', 'Vendor\ProductController@editProduct')->name('editProduct');
-
-Route::post('/product', 'Vendor\ProductController@store')->name('storeProduct');
-
-
 Route::get('users/login', [
     'as' => 'login',
     'uses' => 'Auth\LoginController@showLoginForm'
 ]);
-
-Route::get('/vendorLogin', 'Auth\LoginController@showVendorLoginForm');
-
-Route::get('/vendorRegister', 'Auth\LoginController@register');
 
 Route::group(array('prefix' => 'vendor', 'namespace' => 'Vendor', 'middleware' => 'vendor'), function () {
 
