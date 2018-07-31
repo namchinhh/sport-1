@@ -13,7 +13,8 @@ class VendorsController extends Controller
      * @var string
      */
     //
-    public function home(){
+    public function home()
+    {
         return view('welcome');
     }
 

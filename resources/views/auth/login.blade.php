@@ -1,19 +1,28 @@
 @extends('master')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
-
-                <div class="card-body">
-                    {!! Form::open(['method' => 'POST','action' => 'Auth\LoginController@login'])!!}
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">{{ __('Login') }}</div>
+                    @if (session('status'))
+                        <div class="alert alert-success">
+                            {{ session('status') }}
+                        </div>
+                    @endif
+                    @if($errors->has('errorlogin'))
+                        <div class="alert alert-danger">
+                            {{ $errors->first('errorlogin') }}
+                        </div>
+                    @endif
+                    <div class="card-body">
+                        {!! Form::open(['method' => 'POST','action' => 'Auth\LoginController@postLogin'])!!}
+                        {{ csrf_field() }}
                         <div class="form-group row">
                             {!!Form::label('email', __('E-Mail Address') ,['class'=>'col-sm-4 col-form-label text-md-right']) !!}
                             <div class="col-md-6">
                                 {!! Form::email('email', old('email'), array('placeholder' => 'Email', 'class' => 'form-control $errors->has(\'email\') ? \' is-invalid\' : \'\'  ')) !!}
-                                {{$errors->first('email')}}
                                 @if ($errors->has('email'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('email') }}</strong>
@@ -54,10 +63,10 @@
                                 </a>
                             </div>
                         </div>
-                    {!! Form::close() !!}
+                        {!! Form::close() !!}
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 @endsection

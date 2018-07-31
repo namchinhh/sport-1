@@ -13,32 +13,32 @@
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('getHome');
 
 Auth::routes();
 
+Route::get('/login', 'Auth\LoginController@getLogin');
+Route::post('/login', 'Auth\LoginController@postLogin');
+Route::post('/register','Auth\RegisterController@createUser');
 
+Route::get('/vendorLogin', 'Auth\LoginController@getLoginVendor');
+Route::post('/vendorLogin', 'Auth\LoginController@postLoginVendor');
+Route::post('/vendorRegister','Auth\RegisterController@createVendor');
+Route::get('/vendorRegister','Auth\LoginController@getVendorRegister');
 
+Route::get('/logout','Auth\LoginController@logout');
 
-Route::get('users/login', [
-    'as' => 'login',
-    'uses' => 'Auth\LoginController@showLoginForm'
-]);
-/*Route::get('vendors/login', [
-    'as' => 'login',
-    'uses' => 'Auth\LoginController@showVendorLoginForm'
-]);*/
-Route::get('/vendorLogin', "Auth\LoginController@showVendorLoginForm");
-Route::get('/vendorRegister','Auth\LoginController@register');
-
-Route::group(array('prefix' => 'vendor','namespace' => 'Vendor' , 'middleware' => 'vendor')
+Route::group(array('prefix' => 'vendor', 'namespace' => 'Vendor', 'middleware' => 'vendor')
     ,
     function () {
-        Route::get('/','VendorsController@home');
-
-        Route::get('/login', "VendorsController@showLoginForm");
-
-        Route::get('/logout',"VendorsController@logout");
+        Route::get('/', 'VendorsController@home');
+        Route::get('/logout', "VendorsController@logout");
 
 
+    });
+
+Route::group(array('prefix' => 'user', 'namespace' => 'User', 'middleware' => 'user')
+    ,
+    function () {
+        Route::get('/', 'UserController@home');
     });
