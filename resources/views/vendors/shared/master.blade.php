@@ -57,7 +57,6 @@
 <!-- ./wrapper -->
 
 <!-- jQuery 3 -->
-
 <script src="{!! asset('bower_components/jquery/dist/jquery.min.js') !!}"></script>
 <!-- Bootstrap 3.3.7 -->
 <script src="{!! asset('bower_components/bootstrap/dist/js/bootstrap.min.js') !!}"></script>
@@ -75,5 +74,7 @@
 <!-- ChartJS -->
 <script src="{!! asset('bower_components/chart.js/Chart.js') !!}"></script>
 <script src="{!! asset('bower_components/admin-lte/dist/js/demo.js') !!}"></script>
+<script src="{!! asset('bower_components/ckeditor/ckeditor.js') !!}"></script>
+
 </body>
 </html>
