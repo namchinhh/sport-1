@@ -15,19 +15,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/a', function () {
-    return view('vendors.shared.master');
-});
 
-Route::get('/test', function () {
-    return view('vendors.products.edit');
-});
+Route::get('/product', 'Vendor\ProductController@newProduct')->name('newProduct');
 
-Route::get('/test/{id?}', function () {
-    return view('vendors.products.edit');
-});
+Route::get('/product/{id?}', 'Vendor\ProductController@editProduct')->name('editProduct');
 
-Route::post('/test', 'Vendor\ProductController@store')->name('storeProduct');
+Route::post('/product', 'Vendor\ProductController@store')->name('storeProduct');
 
 Auth::routes();
 

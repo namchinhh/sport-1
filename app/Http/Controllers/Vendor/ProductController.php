@@ -15,7 +15,7 @@ use App\Product;
 class ProductController extends Controller
 {
 
-    public function newAction()
+    public function newProduct()
     {
         return view('vendors.products.edit');
     }
