@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Support\Facades\Auth;
 
-class Vendor
+class User
 {
     /**
      * Handle an incoming request.
@@ -18,7 +18,7 @@ class Vendor
     {
         if (!Auth::check()) {
 
-            return redirect('/vendorLogin');
+            return redirect('/login');
         }
 
         return $next($request);
