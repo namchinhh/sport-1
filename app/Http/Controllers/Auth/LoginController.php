@@ -57,7 +57,6 @@ class LoginController extends Controller
     }
     public function postLogin(Request $request)
     {
-        dd('a');
         $email = $request->input('email');
         $password = $request->input('password');
         if( Auth::attempt(['email' => $email, 'password' =>$password])) {
@@ -75,6 +74,7 @@ class LoginController extends Controller
         } else {
             $errors = new MessageBag(['errorlogin' => 'Email hoặc mật khẩu không đúng']);
             return redirect()->back()->withInput()->withErrors($errors);
+
             }
     }
     public function postLoginVendor(Request $request)

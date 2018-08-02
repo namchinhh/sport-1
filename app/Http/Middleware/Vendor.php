@@ -20,7 +20,6 @@ class Vendor
 
             return redirect('/vendorLogin');
         }
-        dd(Auth::user());
         return $next($request);
     }
 }

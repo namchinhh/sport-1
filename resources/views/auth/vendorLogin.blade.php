@@ -19,7 +19,6 @@
                 @endif
 
                 <div class="card-body">
-
                     {!! Form::open(['method' => 'POST','action' => 'Auth\LoginController@postLoginVendor'])!!}
                     {{ csrf_field() }}
                     <div class="form-group row">

@@ -15,6 +15,7 @@
     "tests"
   ],
   "dependencies": {
-    "template_delux_hotel": "*"
+    "template_delux_hotel": "*",
+    "admin-lte": "*"
   }
 }
