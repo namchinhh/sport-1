@@ -1,81 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>@yield('title')</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- Bootstrap 3.3.7 -->
+    <link rel="stylesheet" href="{!! asset('bower_components/bootstrap/dist/css/bootstrap.min.css') !!}">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="{!! asset('bower_components/font-awesome/css/font-awesome.min.css') !!}">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="{!! asset('bower_components/Ionicons/css/ionicons.min.css') !!}">
+    <!-- jvectormap -->
+    <link rel="stylesheet" href="{!! asset('bower_components/jvectormap/jquery-jvectormap.css') !!}">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="{!! asset('bower_components/admin-lte/dist/css/AdminLTE.min.css') !!}">
+    <!-- AdminLTE Skins. Choose a skin from the css/skins
+         folder instead of downloading all of them to reduce the load. -->
+    <link rel="stylesheet" href="{!! asset('bower_components/admin-lte/dist/css/skins/_all-skins.min.css') !!}">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="{!! asset('js/vendor/html5shiv.min.js') !!}"></script>
+    <script src="{!! asset('js/vendor/respond.min.js') !!}"></script>
+    <![endif]-->
+
+    <!-- Google Font -->
+    <link rel="stylesheet"
+          href="{!! asset('css/vendor/fonts_googleapis.css') !!}">
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+
 @include('vendors.shared.header')
-
-
-<body>
 
 @include('vendors.shared.side_bar')
 
-@yield('content')
+<!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Main content -->
+        <section class="content">
 
-<!-- jQuery -->
-<script src="{!! asset('bower_components/template_admin_gentelella/vendors/jquery/dist/jquery.min.js') !!}"></script>
-<!-- Bootstrap -->
-<script src="{!! asset('bower_components/template_admin_gentelella/vendors/bootstrap/dist/js/bootstrap.min.js') !!}"></script>
+            @yield('content')
+
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+
+    <!-- Add the sidebar's background. This div must be placed
+             immediately after the control sidebar -->
+    <div class="control-sidebar-bg"></div>
+</div>
+<!-- ./wrapper -->
+
+<!-- jQuery 3 -->
+
+<script src="{!! asset('bower_components/jquery/dist/jquery.min.js') !!}"></script>
+<!-- Bootstrap 3.3.7 -->
+<script src="{!! asset('bower_components/bootstrap/dist/js/bootstrap.min.js') !!}"></script>
 <!-- FastClick -->
-<script src="{!! asset('bower_components/template_admin_gentelella/vendors/fastclick/lib/fastclick.js') !!}"></script>
-<!-- NProgress -->
-<script src="{!! asset('bower_components/template_admin_gentelella/vendors/nprogress/nprogress.js') !!}"></script>
-<!-- Chart.js -->
-<script src="{!! asset('bower_components/template_admin_gentelella/vendors/Chart.js/dist/Chart.min.js') !!}"></script>
-<!-- gauge.js -->
-<script src="{!! asset('bower_components/template_admin_gentelella/vendors/gauge.js/dist/gauge.min.js') !!}"></script>
-<!-- bootstrap-progressbar -->
-<script src="{!! asset('bower_components/template_admin_gentelella/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js') !!}"></script>
-<!-- iCheck -->
-<script src="{!! asset('bower_components/template_admin_gentelella/vendors/iCheck/icheck.min.js') !!}"></script>
-<!-- Skycons -->
-<script src="{!! asset('bower_components/template_admin_gentelella/vendors/skycons/skycons.js') !!}"></script>
-<!-- Flot -->
-<script src="{!! asset('bower_components/template_admin_gentelella/vendors/Flot/jquery.flot.js') !!}"></script>
-<script src="{!! asset('bower_components/template_admin_gentelella/vendors/Flot/jquery.flot.pie.js') !!}"></script>
-<script src="{!! asset('bower_components/template_admin_gentelella/vendors/Flot/jquery.flot.time.js') !!}"></script>
-<script src="{!! asset('bower_components/template_admin_gentelella/vendors/Flot/jquery.flot.stack.js') !!}"></script>
-<script src="{!! asset('bower_components/template_admin_gentelella/vendors/Flot/jquery.flot.resize.js') !!}"></script>
-<!-- Flot plugins -->
-<script src="{!! asset('bower_components/template_admin_gentelella/vendors/flot.orderbars/js/jquery.flot.orderBars.js') !!}"></script>
-<script src="{!! asset('bower_components/template_admin_gentelella/vendors/flot-spline/js/jquery.flot.spline.min.js') !!}"></script>
-<script src="{!! asset('bower_components/template_admin_gentelella/vendors/flot.curvedlines/curvedLines.js') !!}"></script>
-<!-- DateJS -->
-<script src="{!! asset('bower_components/template_admin_gentelella/vendors/DateJS/build/date.js') !!}"></script>
-<!-- JQVMap -->
-<script src="{!! asset('bower_components/template_admin_gentelella/vendors/jqvmap/dist/jquery.vmap.js') !!}"></script>
-<script src="{!! asset('bower_components/template_admin_gentelella/vendors/jqvmap/dist/maps/jquery.vmap.world.js') !!}"></script>
-<script src="{!! asset('bower_components/template_admin_gentelella/vendors/jqvmap/examples/js/jquery.vmap.sampledata.js') !!}"></script>
-<!-- bootstrap-daterangepicker -->
-<script src="{!! asset('bower_components/template_admin_gentelella/vendors/moment/min/moment.min.js') !!}"></script>
-<script src="{!! asset('bower_components/template_admin_gentelella/vendors/bootstrap-daterangepicker/daterangepicker.js') !!}"></script>
-
-<!-- Custom Theme Scripts -->
-<script src="{!! asset('bower_components/template_admin_gentelella/build/js/custom.min.js') !!}"></script>
-
-<!-- Select2 -->
-
-<script src="{!! asset('bower_components/template_admin_gentelella/vendors/bootstrap-wysiwyg/js/bootstrap-wysiwyg.min.js') !!}"></script>
-
-
-<script src="{!! asset('bower_components/template_admin_gentelella/vendors/google-code-prettify/src/prettify.js') !!}"></script>
-
-<script src="{!! asset('bower_components/template_admin_gentelella/vendors/jquery.tagsinput/src/jquery.tagsinput.js') !!}"></script>
-
-<script src="{!! asset('bower_components/template_admin_gentelella/vendors/switchery/dist/switchery.min.js') !!}"></script>
-
-<!-- Select2 -->
-<script src="{!! asset('bower_components/template_admin_gentelella/vendors/select2/dist/js/select2.full.min.js') !!}"></script>
-
-<!-- Parsley -->
-<script src="{!! asset('bower_components/template_admin_gentelella/vendors/parsleyjs/dist/parsley.min.js') !!}"></script>
-
-<!-- Autosize -->
-<script src="{!! asset('bower_components/template_admin_gentelella/vendors/autosize/dist/autosize.min.js') !!}"></script>
-<!-- jQuery autocomplete -->
-<script src="{!! asset('bower_components/template_admin_gentelella/vendors/devbridge-autocomplete/dist/jquery.autocomplete.min.js') !!}"></script>
-<!-- starrr -->
-<script src="{!! asset('bower_components/template_admin_gentelella/vendors/starrr/dist/starrr.js') !!}"></script>
-
-<script src="{!! asset('bower_components/template_admin_gentelella/vendors/iCheck/icheck.min.js') !!}"></script>
-
-<script src="{!! asset('bower_components/template_admin_gentelella/vendors/jquery.hotkeys/jquery.hotkeys.js') !!}"></script>
-
-
+<script src="{!! asset('bower_components/fastclick/lib/fastclick.js') !!}"></script>
+<!-- AdminLTE App -->
+<script src="{!! asset('bower_components/admin-lte/dist/js/adminlte.min.js') !!}"></script>
+<!-- Sparkline -->
+<script src="{!! asset('bower_components/jquery-sparkline/dist/jquery.sparkline.min.js') !!}"></script>
+<!-- jvectormap  -->
+<script src="{!! asset('bower_components/admin-lte/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js') !!}"></script>
+<script src="{!! asset('bower_components/admin-lte/plugins/jvectormap/jquery-jvectormap-world-mill-en.js') !!}"></script>
+<!-- SlimScroll -->
+<script src="{!! asset('bower_components/jquery-slimscroll/jquery.slimscroll.min.js') !!}"></script>
+<!-- ChartJS -->
+<script src="{!! asset('bower_components/chart.js/Chart.js') !!}"></script>
+<script src="{!! asset('bower_components/admin-lte/dist/js/demo.js') !!}"></script>
 </body>
 </html>

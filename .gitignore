@@ -12,4 +12,4 @@ npm-debug.log
 yarn-error.log
 .env
 app/Providers/AppServiceProvider.php
-/public
+/public/bower_components

@@ -46,7 +46,37 @@ Route::group(array('prefix' => 'user', 'namespace' => 'User', 'middleware' => 'u
 
     });
 
+Route::get('/a', function () {
+    return view('vendors.shared.master');
+});
 
 Route::get('/test', function () {
-    return view('vendors.shared.master');
+    return view('vendors.products.edit');
+});
+
+Route::get('/test/{id?}', function () {
+    return view('vendors.products.edit');
+});
+
+Route::post('/test', 'Vendor\ProductController@store')->name('storeProduct');
+
+Auth::routes();
+
+Route::get('users/login', [
+    'as' => 'login',
+    'uses' => 'Auth\LoginController@showLoginForm'
+]);
+
+Route::group(array('prefix' => 'vendor', 'namespace' => 'Vendor', 'middleware' => 'vendor'), function () {
+
+    Route::get('/', 'VendorsController@home');
+
+    Route::get('/login', 'VendorsController@showLoginForm');
+
+    Route::get('/logout', 'VendorsController@logout');
+
+    Route::get('/product/new', 'VendorsController@createProduct');
+
+    Route::get('/product/{id}', 'VendorsController@editProduct');
+
 });

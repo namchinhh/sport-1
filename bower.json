@@ -16,6 +16,6 @@
   ],
   "dependencies": {
     "template_delux_hotel": "*",
-    "admin-lte": "*"
+    "admin-lte":"*"
   }
 }
