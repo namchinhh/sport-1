@@ -21,6 +21,7 @@ Route::get('/test', function () {
 
 Route::get('/vendorlist', 'Vendor\VendorsController@getHomeData');
 
+Route::post('/destroyProduct', 'Vendor\VendorsController@destroy')->name('destroyProduct');
 
 
 Auth::routes();
@@ -32,7 +33,7 @@ Route::get('users/login', [
 
 Route::get('/vendorLogin', 'Auth\LoginController@showVendorLoginForm');
 
-Route::get('/vendorRegister','Auth\LoginController@register');
+Route::get('/vendorRegister', 'Auth\LoginController@register');
 
 Route::group(array('prefix' => 'vendor', 'namespace' => 'Vendor', 'middleware' => 'vendor'), function () {
 
@@ -45,3 +46,4 @@ Route::group(array('prefix' => 'vendor', 'namespace' => 'Vendor', 'middleware' =
     Route::get('/product/{id}', 'VendorsController@editProduct');
 
 });
+
