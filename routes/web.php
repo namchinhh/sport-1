@@ -25,12 +25,17 @@ Route::post('/product', 'Vendor\ProductController@store')->name('storeProduct');
 Auth::routes();
 
 Route::get('/login', 'Auth\LoginController@getLogin');
+
 Route::post('/login', 'Auth\LoginController@postLogin');
+
 Route::post('/register', 'Auth\RegisterController@createUser');
 
 Route::get('/vendorLogin', 'Auth\LoginController@getLoginVendor');
+
 Route::post('/vendorLogin', 'Auth\LoginController@postLoginVendor');
+
 Route::post('/vendorRegister', 'Auth\RegisterController@createVendor');
+
 Route::get('/vendorRegister', 'Auth\LoginController@getVendorRegister');
 
 Route::get('/logout', 'Auth\LoginController@logout');
@@ -64,7 +69,13 @@ Route::group(array('prefix' => 'vendor', 'namespace' => 'Vendor', 'middleware' =
 
     Route::post('/createPost', 'VendorPostController@store')->name('storePost');
 
-    Route::get('/posts', 'VendorPostController@index')->name('indexPost');
+    Route::get('/posts/{id?}', 'VendorPostController@index')->name('indexPost');
+
+    Route::post('/editPosts/{id?}/edit', 'VendorPostController@edit')->name('editPost');
+
+    Route::get('/editPosts/{id?}/edit', 'VendorPostController@update')->name('updatePost');
+
+    Route::get('/editPosts/{id?}/delete', 'VendorPostController@destroy')->name('destroyPost');
 
     Route::get('/logout', 'VendorsController@logout');
 

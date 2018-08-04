@@ -25,15 +25,32 @@
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body pad">
-                    {!! Form::open(['method' => 'post','route' => 'storePost']) !!}
-                    {!! Form::textarea('content',old('content'),['class'=>'form-control','row' => '10','col'=>'80']) !!}
-                    <div class="form-group">
-                        {!! Form::label('image',trans('Image')) !!}
-                        {!! Form::file('image',old('image'),['id' => 'exampleInputFile']) !!}
-                        <p class="help-block">{{ __('For Image Post') }}</p>
-                    </div>
-                    {!! Form::submit(__('Đăng Bài'),['class'=>'btn btn-primary']) !!}
-                    {!! Form::close() !!}
+                    @if(empty($post))
+                        {!! Form::open(['method' => 'post','route' => 'storePost']) !!}
+                        {!! Form::textarea('content',old('content'),['class'=>'form-control','row' => '10','col'=>'80']) !!}
+                        <div class="form-group">
+                            {!! Form::label('image',trans('Image')) !!}
+                            {!! Form::file('image',old('image'),['id' => 'exampleInputFile']) !!}
+                            <p class="help-block">{{ __('For Image Post') }}</p>
+                        </div>
+                        {!! Form::submit(__('Đăng Bài'),['class'=>'btn btn-primary']) !!}
+                        {!! Form::close() !!}
+                    @else
+                        {!! Form::model($post, array('route' => array('updatePost', $post->id),'method' => 'get'))!!}
+                        {!! Form::textarea('content',$post->content,['class'=>'form-control','row' => '10','col'=>'80']) !!}
+                        <div class="form-group">
+                            {!! Form::label('image',trans('Image')) !!}
+                            {!! Form::file('image',old('image'),['id' => 'exampleInputFile']) !!}
+                            {!! Form::label(trans('Old Image'))!!} {{ $post->image }}
+                            <p class="help-block">{{ __('For Image Post') }}</p>
+                        </div>
+                        {!! Form::submit(__('Cập Nhật Bài Đăng') ,['class'=>'btn btn-primary']) !!}
+                        <a href="{{route('destroyPost', array('id' => $post->id))}}"
+                           class="btn btn-danger float-lg-right">{{__('Xóa Bài Đăng')}}</a>
+                        {!! Form::close() !!}
+
+                    @endif
+
                 </div>
             </div>
         </div>

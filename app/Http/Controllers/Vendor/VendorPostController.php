@@ -53,7 +53,7 @@ class VendorPostController extends Controller
             return redirect()->back()->with('error', __('Has An Error!'));
 
         }
-        return redirect('/')->with('status', __('A Post has been created'));
+        return redirect('vendor/posts')->with('status', __('A Post has been created'));
     }
 
     /**
@@ -64,7 +64,7 @@ class VendorPostController extends Controller
      */
     public function show($id)
     {
-        //
+
     }
 
     /**
@@ -76,6 +76,9 @@ class VendorPostController extends Controller
     public function edit($id)
     {
         //
+        $post = Post::whereId($id)->firstOrFail();
+        //
+        return view('vendors.posts.createPost', compact('post'));
     }
 
     /**
@@ -85,9 +88,22 @@ class VendorPostController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(FormPostRequest $request, $id)
     {
         //
+        if ($request->get('content') == null) {
+            return redirect()->back()->with('error', __('Content Không thể Để Trống'));
+        } else {
+            try {
+                $post = Post::Where('id', $id)->firstOrFail();
+                $post->content = $request->get('content');
+                $post->image = $request->get('image');
+                $post->save();
+            } catch (\Exception $exception) {
+                return redirect()->back()->with('error', __('Has error while update'));
+            }
+        }
+        return redirect('vendor/posts')->with('status', __('Post had been Updated '));
     }
 
     /**
@@ -96,8 +112,13 @@ class VendorPostController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
+    public
+    function destroy(
+        $id
+    ) {
         //
+        $post = Post::whereId($id)->firstOrFail();
+        $post->delete();
+        return redirect('vendor/posts')->with('status', 'The Post ' . $id . ' has been deleted');
     }
 }
