@@ -74,7 +74,7 @@ Route::get('users/login', [
 
 Route::get('/vendorLogin', 'Auth\LoginController@showVendorLoginForm');
 
-Route::get('/vendorRegister','Auth\LoginController@register');
+Route::get('/vendorRegister', 'Auth\LoginController@register');
 
 Route::group(array('prefix' => 'vendor', 'namespace' => 'Vendor', 'middleware' => 'vendor'), function () {
 
@@ -111,11 +111,4 @@ Route::group(array('prefix' => 'vendor', 'namespace' => 'Vendor', 'middleware' =
     Route::post('/editPlaces/{id?}/update', 'PlacesController@update')->name('updatePlace');
 
     Route::get('/editPlaces/{id?}/delete', 'PlacesController@destroy')->name('destroyPlace');
-});
-
-Route::get('/map', 'HomeController@getMap')->name('getMap');
-
-
-Route::get('/test', function () {
-    return view('vendors.shared.master');
 });

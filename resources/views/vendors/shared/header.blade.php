@@ -17,7 +17,7 @@
                 <li class="dropdown notifications-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <i class="fa fa-bell-o"></i>
-                        <span class="label label-warning">10</span>
+                        <span class="label label-warning">{{ __('10') }}</span>
                     </a>
                     <ul class="dropdown-menu">
                         <li class="header">{{ __('You have 10 notifications') }}</li>
@@ -42,14 +42,11 @@
                 <!-- User Account: style can be found in dropdown.less -->
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <span class="hidden-xs">Alexander Pierce</span>
+                        <span class="hidden-xs">{{ __('Vendor') }}</span>
                     </a>
                     <ul class="dropdown-menu">
                         <!-- User image -->
                         <li class="user-header">
-                            <p>
-                                Alexander Pierce - Web Developer
-                            </p>
                         </li>
                         <!-- Menu Footer-->
                         <li class="user-footer">
