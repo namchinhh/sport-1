@@ -3,6 +3,13 @@
 @section('content')
     <div class="row">
         <div class="col-md-12">
+            @if (session('error'))
+                <div class="alert alert-danger alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <h4><i class="icon fa fa-ban"></i> {{ __('Error') }}!</h4>
+                    {{ session('error') }}
+                </div>
+            @endif
             <div class="box box-info">
                 <div class="box-header">
                     <h3 class="box-title">{{ __('Nội Dung Bài Viết') }}
@@ -13,18 +20,19 @@
                         <button type="button" class="btn btn-info btn-sm" data-widget="collapse" data-toggle="tooltip"
                                 title="Collapse">
                             <i class="fa fa-minus"></i></button>
-                        <button type="button" class="btn btn-info btn-sm" data-widget="remove" data-toggle="tooltip"
-                                title="Remove">
-                            <i class="fa fa-times"></i></button>
                     </div>
                     <!-- /. tools -->
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body pad">
-                    {!! Form::open(['method' => 'post','action' => 'Vendor\VendorPostController@store']) !!}
-                    <textarea id="editor1" name="editor1" rows="10" cols="80">
-                                           {{ __('Nhập Nội Dung Cho Bài Viết Của Bạn') }}
-                    </textarea>
+                    {!! Form::open(['method' => 'post','route' => 'storePost']) !!}
+                    {!! Form::textarea('content',old('content'),['class'=>'form-control','row' => '10','col'=>'80']) !!}
+                    <div class="form-group">
+                        {!! Form::label('image',trans('Image')) !!}
+                        {!! Form::file('image',old('image'),['id' => 'exampleInputFile']) !!}
+                        <p class="help-block">{{ __('For Image Post') }}</p>
+                    </div>
+                    {!! Form::submit(__('Đăng Bài'),['class'=>'btn btn-primary']) !!}
                     {!! Form::close() !!}
                 </div>
             </div>
@@ -39,7 +47,7 @@
         $(function () {
             // Replace the <textarea id="editor1"> with a CKEditor
             // instance, using default configuration.
-            CKEDITOR.replace('editor1')
+            CKEDITOR.replace('content')
             //bootstrap WYSIHTML5 - text editor
             $('.textarea').wysihtml5()
         })

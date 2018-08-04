@@ -62,7 +62,9 @@ Route::group(array('prefix' => 'vendor', 'namespace' => 'Vendor', 'middleware' =
 
     Route::get('/createPost', 'VendorPostController@create');
 
-    Route::post('/createPost', 'VendorPostController@store');
+    Route::post('/createPost', 'VendorPostController@store')->name('storePost');
+
+    Route::get('/posts', 'VendorPostController@index')->name('indexPost');
 
     Route::get('/logout', 'VendorsController@logout');
 
