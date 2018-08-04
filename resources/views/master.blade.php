@@ -8,7 +8,8 @@
     <title>{{ __('Trùm Sân - Xem Sân Bóng Và Đặt Sân Hiệu Q') }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link rel="stylesheet" href="{!! asset('bower_components/template_delux_hotel/assets/images/favicon/favicon.png') !!}">
+    <link rel="stylesheet"
+          href="{!! asset('bower_components/template_delux_hotel/assets/images/favicon/favicon.png') !!}">
     <link rel="stylesheet" href="{!! asset('bower_components/template_delux_hotel/assets/css/style.css') !!}">
     <link rel="stylesheet" href="{!! asset('bower_components/template_delux_hotel/assets/css/responsive.css') !!}">
 
@@ -21,19 +22,27 @@
 
 @include('shared.footer')
 
-
-<script type="text/javascript" src="{!!asset('bower_components/template_delux_hotel/assets/js/jquery.min.js')  !!}"></script>
-<script type="text/javascript" src="{!!asset('bower_components/template_delux_hotel/assets/js/tether.min.js') !!}"></script>
-<script type="text/javascript" src="{!!asset('bower_components/template_delux_hotel/assets/js/bootstrap.min.js') !!}"></script>
-<script type="text/javascript" src="{!!asset('bower_components/template_delux_hotel/assets/js/jquery-ui.min.js') !!}"></script>
-<script type="text/javascript" src="{!!asset('bower_components/template_delux_hotel/assets/js/moment.min.js') !!}"></script>
-<script type="text/javascript" src="{!!asset('bower_components/template_delux_hotel/assets/js/jquery.smartmenus.js') !!}"></script>
-<script type="text/javascript" src="{!!asset('bower_components/template_delux_hotel/assets/js/jquery.parallax.min.js') !!}"></script>
-<script type="text/javascript" src="{!!asset('bower_components/template_delux_hotel/assets/js/jquery.shuffle.min.js') !!}"></script>
-<script type="text/javascript" src="{!!asset('bower_components/template_delux_hotel/assets/js/owl.carousel.min.js') !!}"></script>
+<script type="text/javascript"
+        src="{!! asset('bower_components/template_delux_hotel/assets/js/jquery.min.js') !!}"></script>
+<script type="text/javascript"
+        src="{!! asset('bower_components/template_delux_hotel/assets/js/tether.min.js') !!}"></script>
+<script type="text/javascript"
+        src="{!! asset('bower_components/template_delux_hotel/assets/js/bootstrap.min.js') !!}"></script>
+<script type="text/javascript"
+        src="{!! asset('bower_components/template_delux_hotel/assets/js/jquery-ui.min.js') !!}"></script>
+<script type="text/javascript"
+        src="{!! asset('bower_components/template_delux_hotel/assets/js/moment.min.js') !!}"></script>
+<script type="text/javascript"
+        src="{!! asset('bower_components/template_delux_hotel/assets/js/jquery.smartmenus.js') !!}"></script>
+<script type="text/javascript"
+        src="{!! asset('bower_components/template_delux_hotel/assets/js/jquery.parallax.min.js') !!}"></script>
+<script type="text/javascript"
+        src="{!! asset('bower_components/template_delux_hotel/assets/js/jquery.shuffle.min.js') !!}"></script>
+<script type="text/javascript"
+        src="{!! asset('bower_components/template_delux_hotel/assets/js/owl.carousel.min.js') !!}"></script>
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
-<script type="text/javascript" src="{!!asset('bower_components/template_delux_hotel/assets/js/map.js') !!}"></script>
-<script type="text/javascript" src="{!!asset('bower_components/template_delux_hotel/assets/js/main.js') !!}"></script>
+<script type="text/javascript" src="{!! asset('bower_components/template_delux_hotel/assets/js/map.js') !!}"></script>
+<script type="text/javascript" src="{!! asset('bower_components/template_delux_hotel/assets/js/main.js') !!}"></script>
 
 </body>
 </html>
