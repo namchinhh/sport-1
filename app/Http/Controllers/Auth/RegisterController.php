@@ -70,7 +70,7 @@ class RegisterController extends Controller
             'contact' => $request->get('contact'),
         ]);
 
-        return redirect('/login')->with('status', 'A new account has been created');
+        return redirect('/login')->with('status', __('A new account has been created'));
     }
 
     protected  function createVendor(userRegisterFormRequest $request)
@@ -85,7 +85,7 @@ class RegisterController extends Controller
             'contact' => $request->get('contact'),
         ]);
 
-        return redirect('/vendorLogin')->with('status', 'A new account Vendor has been created');
+        return redirect('/vendorLogin')->with('status', __('A new account Vendor has been created'));
     }
 
 }

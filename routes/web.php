@@ -21,32 +21,32 @@ Route::get('/login', 'Auth\LoginController@getLogin');
 
 Route::post('/login', 'Auth\LoginController@postLogin');
 
-Route::post('/register','Auth\RegisterController@createUser');
+Route::post('/register', 'Auth\RegisterController@createUser');
 
 Route::get('/vendorLogin', 'Auth\LoginController@getLoginVendor');
 
 Route::post('/vendorLogin', 'Auth\LoginController@postLoginVendor');
 
-Route::post('/vendorRegister','Auth\RegisterController@createVendor');
+Route::post('/vendorRegister', 'Auth\RegisterController@createVendor');
 
-Route::get('/vendorRegister','Auth\LoginController@getVendorRegister');
+Route::get('/vendorRegister', 'Auth\LoginController@getVendorRegister');
 
-Route::get('/logout','Auth\LoginController@logout');
+Route::get('/logout', 'Auth\LoginController@logout');
 
 Route::group(array('prefix' => 'vendor', 'namespace' => 'Vendor', 'middleware' => 'vendor'), function () {
 
-        Route::get('/', 'VendorsController@home');
+    Route::get('/', 'VendorsController@home');
 
-        Route::get('/logout', 'VendorsController@logout');
+    Route::get('/logout', 'VendorsController@logout');
 
-        Route::get('/product/new', 'VendorsController@createProduct');
+    Route::get('/product/new', 'VendorsController@createProduct');
 
-        Route::get('/product/{id}', 'VendorsController@editProduct');
+    Route::get('/product/{id}', 'VendorsController@editProduct');
 
-    });
+});
 
 Route::group(array('prefix' => 'user', 'namespace' => 'User', 'middleware' => 'user'), function () {
 
-        Route::get('/', 'UserController@home');
+    Route::get('/', 'UserController@home');
 
-    });
+});
