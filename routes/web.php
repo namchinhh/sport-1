@@ -21,7 +21,9 @@ Route::get('/test', function () {
 
 Route::get('/vendorlist', 'Vendor\VendorsController@getHomeData');
 
-Route::post('/destroyProduct', 'Vendor\VendorsController@destroy')->name('destroyProduct');
+Route::get('/delete-product/{id}','Vendor\VendorsController@deleteProduct');
+
+//Route::post('/destroyProduct', 'Vendor\VendorsController@destroy')->name('destroyProduct');
 
 
 Auth::routes();

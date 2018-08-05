@@ -35,12 +35,20 @@ class VendorsController extends Controller
         return view('auth/vendorLogin');
     }
 
-    public function destroy($id)
-    {
-        dd("jnsdjksnf");
-//        $products = products::whereId($id)->firstOrFail();
-//        $products->delete();
-//        return redirect('/vendorlist');
+    public function deleteProduct($id){
+        $products = Products::find($id);
+
+        $products->delete();
+
+        return redirect('/vendorlist')->with('msg',"da xoa san bong thanh cong");
     }
+
+//    public function destroy($id)
+//    {
+//        dd("jnsdjksnf");
+////        $products = products::whereId($id)->firstOrFail();
+////        $products->delete();
+////        return redirect('/vendorlist');
+//    }
 
 }

@@ -30,7 +30,7 @@
                                     <td>{{ $products[$i]->created_at }}</td>
                                     <td>{{ $products[$i]->updated_at }}</td>
                                     <td>
-                                        <a href="{{route('destroyProduct')}}">
+                                        <a href='{{ url('/delete-product/'.$products[$i]->id) }}' >
                                             <button type="submit" class="btn btn-warning">{{ __('Xóa') }}</button>
                                         </a>
                                     </td>
