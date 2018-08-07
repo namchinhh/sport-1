@@ -12,7 +12,17 @@
                 <a href="#"><i class="fa fa-circle text-success"></i>{{ __('Đang hoạt động') }}</a>
             </div>
         </div>
-        <!-- sidebar menu: : style can be found in sidebar.less -->
+        {!! Form::open(['method' => 'get', 'action' => 'Vendor\VendorsController@getSearch', 'class' => 'sidebar-form']) !!}
+        }
+        <div class="input-group">
+            {!! Form::text('search',null,array('class' => 'form-control')) !!}
+            <span class="input-group-btn">
+                    {!! Form::submit('search',array('id' => 'search-btn', 'class' => 'btn btn-flat')) !!}
+                <i class="fa fa-search"></i>
+              </span>
+        </div>
+    {!! Form::close() !!}
+    <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu" data-widget="tree">
             <li class="header">{{ __('Menu') }}</li>
             <li class="active treeview">

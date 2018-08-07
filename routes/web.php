@@ -13,10 +13,6 @@
 
 Route::get('/', 'HomeController@index')->name('getHome');
 
-Route::get('/test', function () {
-    return view('vendors.shared.master');
-});
-
 Auth::routes();
 
 Route::get('/getPlaces/{type?}', 'User\UserController@getPlaces')->name('getPlaces');
