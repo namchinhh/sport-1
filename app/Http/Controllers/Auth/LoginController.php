@@ -95,7 +95,7 @@ class LoginController extends Controller
                 return redirect()->action('Auth\LoginController@getLoginVendor')->withInput()->withErrors($errors);
             } else {
                 if ($role == 2) {
-                    return view('/home');
+                    return redirect('/vendor');
                 }
             }
 

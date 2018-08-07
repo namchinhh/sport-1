@@ -54,6 +54,7 @@ class VendorPostController extends Controller
         } catch (\Exception $exception) {
             return redirect()->back()->with('error', __('Has An Error!'));
         }
+
         return redirect('vendor/posts')->with('status', __('A Post has been created'));
     }
 
@@ -78,6 +79,7 @@ class VendorPostController extends Controller
     {
         //
         $post = Post::whereId($id)->findOrFail();
+
         return view('vendors.posts.createPost', compact('post'));
     }
 
@@ -120,6 +122,7 @@ class VendorPostController extends Controller
         //
         $post = Post::whereId($id)->findOrFail();
         $post->delete();
+
         return redirect('vendor/posts')->with('status', __('The Post ' . $id . ' has been deleted'));
     }
 }
