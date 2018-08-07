@@ -25,12 +25,22 @@ Route::post('/uploadProductImage', 'Vendor\UploadController@postImages')->name('
 
 Route::post('/removeProductImage', 'Vendor\UploadController@removeImages')->name('removeProductImage');
 
+Route::get('/vendorlist', 'Vendor\VendorsController@getHomeData');
+
+Route::get('/delete-product/{id}', 'Vendor\VendorsController@deleteProduct');
+
+Route::get('search', 'Vendor\VendorsController@getSearch');
+
 Auth::routes();
 
 Route::get('users/login', [
     'as' => 'login',
     'uses' => 'Auth\LoginController@showLoginForm'
 ]);
+
+Route::get('/vendorLogin', 'Auth\LoginController@showVendorLoginForm');
+
+Route::get('/vendorRegister', 'Auth\LoginController@register');
 
 Route::group(array('prefix' => 'vendor', 'namespace' => 'Vendor', 'middleware' => 'vendor'), function () {
 

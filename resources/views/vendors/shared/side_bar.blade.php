@@ -56,7 +56,7 @@
                 <a href="#">
                     <i class="fa fa-th"></i> <span>{{ __('Danh sách sân') }}</span>
                     <span class="pull-right-container">
-            <small class="label pull-right bg-green">new</small>
+              <small class="label pull-right bg-green">{{ __('new') }}</small>
             </span>
                 </a>
             </li>
