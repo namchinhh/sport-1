@@ -53,8 +53,20 @@
                             {!! Form::label('type', trans('Loại mô hình: ')) !!}
                             {!! Form::select(
                                 'type',
-                                ['1' => trans('Sân Bóng'), '2' => trans('Sân Tennis'), '3' => trans('Bể Bơi')],
+                                $types,
                                 @$product?$product->type:null,
+                                ['class'=>'form-control']
+                            ) !!}
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-xs-3">
+                            {!! Form::label('placeId', trans('Cơ sở: ')) !!}
+                            {!! Form::select(
+                                'placeId',
+                                $places,
+                                @$product?$product->place_id:null,
                                 ['class'=>'form-control']
                             ) !!}
                         </div>
@@ -98,10 +110,6 @@
                     <div class="box-body pad">
                         {!! Form::label('description', trans('Mô tả: ')) !!}
                         {!! Form::textarea('description', @$product?$product->description:null, ['class'=>'form-control']) !!}
-                    </div>
-                    <div class="form-group">
-                        {!! Form::label('address', trans('Địa Chỉ: ')) !!}
-                        {!! Form::text('address', @$product?$product->address:null, ['class'=>'form-control', 'required'=>'true']) !!}
                     </div>
                     @if(@$product)
                         <div class="form-group">

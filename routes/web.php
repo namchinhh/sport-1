@@ -13,12 +13,6 @@
 
 Route::get('/', 'HomeController@index')->name('getHome');
 
-Route::get('/product', 'Vendor\ProductController@newProduct')->name('newProduct');
-
-Route::get('/product/{id?}', 'Vendor\ProductController@editProduct')->name('editProduct');
-
-Route::post('/product', 'Vendor\ProductController@store')->name('storeProduct');
-
 Route::post('/uploadProductImage', 'Vendor\UploadController@postImages')->name('uploadProductImage');
 
 Route::post('/removeProductImage', 'Vendor\UploadController@removeImages')->name('removeProductImage');
@@ -33,13 +27,7 @@ Auth::routes();
 
 Route::get('/get-products/{type?}', 'User\UserController@getProducts')->name('getProducts');
 
-Route::get('/product', 'Vendor\ProductController@newProduct')->name('newProduct');
-
-Route::get('/product/{id?}', 'Vendor\ProductController@editProduct')->name('editProduct');
-
 Route::get('/getPost/{id?}/show', 'User\UserController@getPostDetail')->name('getPostDetail');
-
-Route::post('/product', 'Vendor\ProductController@store')->name('storeProduct');
 
 Route::get('/login', 'Auth\LoginController@getLogin');
 
@@ -57,28 +45,17 @@ Route::get('/vendorRegister', 'Auth\LoginController@getVendorRegister');
 
 Route::get('/logout', 'Auth\LoginController@logout');
 
-
 Route::group(array('prefix' => 'user', 'namespace' => 'User', 'middleware' => 'user'), function () {
 
     Route::get('/', 'UserController@home');
 
 });
 
-Route::get('/product', 'Vendor\ProductController@new')->name('newProduct');
-
-Route::get('/product/{id?}', 'Vendor\ProductController@editProduct')->name('editProduct');
-
-Route::post('/product', 'Vendor\ProductController@store')->name('storeProduct');
-
-
 Route::get('users/login', [
     'as' => 'login',
     'uses' => 'Auth\LoginController@showLoginForm'
 ]);
 
-Route::get('/vendorLogin', 'Auth\LoginController@showVendorLoginForm');
-
-Route::get('/vendorRegister', 'Auth\LoginController@register');
 
 Route::group(array('prefix' => 'vendor', 'namespace' => 'Vendor', 'middleware' => 'vendor'), function () {
 
@@ -100,9 +77,13 @@ Route::group(array('prefix' => 'vendor', 'namespace' => 'Vendor', 'middleware' =
 
     Route::get('/logout', 'VendorsController@logout');
 
-    Route::get('/product/new', 'VendorsController@createProduct');
+    Route::get('/product/new', 'ProductController@newProduct')->name('newProduct');
 
-    Route::get('/product/{id}', 'VendorsController@editProduct');
+    Route::get('/product/{id}', 'ProductController@editProduct')->name('editProduct');
+
+    Route::post('/product', 'ProductController@store')->name('storeProduct');
+
+    Route::get('/vendorlist', 'VendorsController@getHomeData')->name('listProduct');
 
     Route::get('/createPlace', 'PlacesController@create')->name('showCreatePlaceForm');
 
@@ -118,8 +99,3 @@ Route::group(array('prefix' => 'vendor', 'namespace' => 'Vendor', 'middleware' =
 });
 
 Route::get('/map', 'HomeController@getMap')->name('getMap');
-
-
-Route::get('/test', function () {
-    return view('vendors.shared.master');
-});

@@ -17,7 +17,7 @@ class VendorsController extends Controller
     //
     public function home()
     {
-        return view('index');
+        return view('vendors.shared.master');
     }
 
     /**

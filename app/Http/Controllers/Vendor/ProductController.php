@@ -11,6 +11,8 @@ namespace App\Http\Controllers\Vendor;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductFormRequest;
 use App\Option;
+use App\Place;
+use Illuminate\Support\Facades\Auth;
 use App\Product;
 use Illuminate\Support\Facades\Redirect;
 
@@ -19,23 +21,39 @@ class ProductController extends Controller
 
     public function newProduct()
     {
-//        $vendorId = Auth::user()->id;
-        //test with vendor id = 1
-        $vendorId = 1;
+        $vendorId = Auth::user()->id;
+        $placesCollection = Place::whereVendorId($vendorId)->get();
+        $places=[];
+        foreach ($placesCollection as $placeModel) {
+            $places[$placeModel->id] = $placeModel->name;
+        }
+        $types = [
+            '1' => trans('Sân Bóng'),
+            '2' => trans('Sân Tennis'),
+            '3' => trans('Bể Bơi')
+        ];
 
-        return view('vendors.products.edit', compact('vendorId'));
+        return view('vendors.products.edit', compact(['vendorId', 'places', 'types']));
     }
 
     public function editProduct($id)
     {
-//        $vendorId = Auth::user()->id;
-        //test with vendor id = 1
-        $vendorId = 1;
+        $vendorId = Auth::user()->id;
         $product = Product::findOrFail($id);
         $options = Option::whereProductId($id)->get();
+        $placesCollection = Place::whereVendorId($vendorId)->get();
         $images = $product->images;
+        $types = [
+            '1' => trans('Sân Bóng'),
+            '2' => trans('Sân Tennis'),
+            '3' => trans('Bể Bơi')
+        ];
+        $places = [];
+        foreach ($placesCollection as $placeModel) {
+            $places[$placeModel->id] = $placeModel->name;
+        }
 
-        return view('vendors.products.edit', compact(['product', 'vendorId', 'options', 'images']));
+        return view('vendors.products.edit', compact(['product', 'vendorId', 'options', 'images', 'places', 'types']));
     }
 
     public function store(ProductFormRequest $request)
@@ -55,7 +73,7 @@ class ProductController extends Controller
                 'type' => $request->type,
                 'description' => $request->description,
                 'status' => $request->status,
-                'address' => $request->address
+                'place_id'=>$request->placeId
             ];
             if ($request->thumbnail) {
                 $photoName = time() . '.' . $request->thumbnail->getClientOriginalExtension();
@@ -85,7 +103,7 @@ class ProductController extends Controller
                     'price' => $options['price'][$i],
                     'description' => $options['description'][$i]
                 ];
-                if ($options['id'][$i]) {
+                if (@$options['id'][$i]) {
                     Option::whereId($options['id'][$i])->update($optionsData);
                 } else {
                     Option::create($optionsData);

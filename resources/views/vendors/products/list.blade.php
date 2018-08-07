@@ -5,40 +5,46 @@
             <div class="col-xs-12">
                 <div class="box">
                     <div class="box-header">
-                        <h3 class="box-title">{{ __('Danh sách sân') }}</h3>
+                        <a href='{{ url('vendor/product/new') }}'>
+                            <button type="button" class="btn btn-primary btn-lg">{{ __('Thêm Mới') }}</button>
+                        </a>
                     </div>
+
                     <!-- /.box-header -->
                     <div class="box-body">
                         <table id="example2" class="table table-bordered table-hover">
                             <thead>
                             <tr>
-                                <th>{{ __("id") }}</th>
-                                <th>{{ __("Địa chỉ") }}</th>
+                                <th>{{ __("Id") }}</th>
                                 <th>{{ __("Thông tin") }}</th>
                                 <th>{{ __("Trạng thái") }}</th>
                                 <th>{{ __("Khởi tạo") }}</th>
                                 <th>{{ __("Cập nhật") }}</th>
-                                <th>{{ __("xóa sân") }}</th>
+                                <th>{{ __("Sửa sân") }}</th>
+                                <th>{{ __("Xóa sân") }}</th>
                             </thead>
                             <tbody>
                             @for($i=0;$i<count($products);$i++)
                                 @php
-                                    $statusString;
                                     if($products[$i]->status == 1)
                                     {
-                                        $statusString = "còn sân";
+                                        $statusString = "Hoạt động";
                                     }else
                                     {
-                                        $statusString = "kín lịch";
+                                        $statusString = "Bảo trì";
                                     }
                                 @endphp
                                 <tr>
                                     <td>{{ $products[$i]->id }}</td>
-                                    <td>{{ $products[$i]->address }}</td>
                                     <td>{{ $products[$i]->description }}</td>
                                     <td>{{ $statusString }}</td>
                                     <td>{{ $products[$i]->created_at }}</td>
                                     <td>{{ $products[$i]->updated_at }}</td>
+                                    <td>
+                                        <a href='{{ url('vendor/product/'.$products[$i]->id) }}'>
+                                            <button type="submit" class="btn btn-primary">{{ __('Sửa') }}</button>
+                                        </a>
+                                    </td>
                                     <td>
                                         <a href='{{ url('/delete-product/'.$products[$i]->id) }}'>
                                             <button type="submit" class="btn btn-warning">{{ __('Xóa') }}</button>
