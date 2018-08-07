@@ -25,10 +25,28 @@
                 </a>
                 <ul class="treeview-menu">
                     <li class="active">
-                        <a href="#"><i class="fa fa-circle-o"></i>{{ __('Danh sách bài đăng') }}</a>
+                        <a href="{{ route('indexPost') }}"><i class="fa fa-circle-o"></i>{{ __('Danh sách bài đăng') }}
+                        </a>
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-circle-o"></i>{{ __('Đăng bài mới') }}</a>
+                        <a href="{{ route('createPost') }}"><i class="fa fa-circle-o"></i>{{ __('Đăng bài mới') }}</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-files-o"></i>
+                    <span>{{ __('Cơ Sở ') }}</span>
+                    <span class="pull-right-container">
+            </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li>
+                        <a href="{{ route('showCreatePlaceForm') }}"><i
+                                    class="fa fa-circle-o"></i>{{ __('Thêm Cơ Sở Mới') }}</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('indexPlace') }}"><i class="fa fa-circle-o"></i>{{ __('Xem Các Cơ Sở ') }}</a>
                     </li>
                 </ul>
             </li>

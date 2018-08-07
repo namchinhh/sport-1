@@ -24,8 +24,12 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-3">
-                        <div class="logo"><a href="index-2.html" class="navbar-brand page-scroll"><img
-                                        src="assets/images/logo/logo.png" alt="logo"/></a></div>
+                        <div class="logo">
+                            <a href="#" class="navbar-brand page-scroll">
+                                <img src="{!! asset('bower_components/template_delux_hotel/assets/images/logo/logo.png')!!}"
+                                     alt="logo"/>
+                            </a>
+                        </div>
                     </div>
                     <div class="col-lg-9">
                         <div class="navbar-header">
@@ -38,12 +42,20 @@
                         <div class="collapse navbar-collapse navbar-main-collapse">
                             <ul class="nav navbar-nav navbar-right">
                                 <li class=" active"><a href="index-2.html">{{ __('Trang Chủ ') }}</a></li>
-                                <li><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                                <li><a href="#" class="dropdown-toggle"
+                                       data-toggle="dropdown"
+                                       role="button"
                                        aria-expanded="false">{{ __('Tìm Sân ') }} <span class="caret"></span></a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="about-us.html">{{ __('Sân Bóng ') }}</a></li>
-                                        <li><a href="contacts.html">{{ __('Sân Tenis ') }}</a></li>
-                                        <li><a href="contacts.html">{{ __('Bể Bơi ') }}</a></li>
+                                        <li>
+                                            <a href="{{ route('getProducts',array('type' => 'football')) }}">{{ __('Sân Bóng ') }}</a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ route('getProducts',array('type' => 'tennis')) }}">{{ __('Sân Tenis ') }}</a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ route('getProducts',array('type' => 'swimming-pool')) }}">{{ __('Bể Bơi ') }}</a>
+                                        </li>
                                         <li><a href="gallery.html">{{ __('Đã Từng Đặt ') }}</a></li>
                                     </ul>
                                 </li>

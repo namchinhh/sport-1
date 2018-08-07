@@ -18,6 +18,7 @@ class CreatePostsTable extends Migration
             $table->integer('vendor_id');
             $table->string('content')->nullable();
             $table->string('image')->nullable();
+            $table->
             $table->timestamps();
         });
     }
