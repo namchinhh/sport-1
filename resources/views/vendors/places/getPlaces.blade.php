@@ -19,7 +19,7 @@
                     </div>
                 @endif
                 <div class="box-header">
-                    <h3 class="box-title"> {{ __('Tất Cả Bài Đăng') }}</h3>
+                    <h3 class="box-title"> {{ __('Cơ Sở Của Bạn ') }}</h3>
                     <div class="box-tools">
                         <div class="input-group input-group-sm" style="width: 150px;">
                             <input type="text" name="table_search" class="form-control pull-right"
@@ -34,26 +34,22 @@
                 <div class="box-body table-responsive no-padding">
                     <table class="table table-hover">
                         <tr>
-                            <th>{{ __('ID') }}</th>
-                            <th>{{ __('Content') }}</th>
-                            <th>{{ __('Image') }}</th>
-                            <th>{{ __('URL') }}</th>
+                            <th>{{ __('Name') }}</th>
+                            <th>{{ __('Address') }}</th>
                             <th colspan="2" class="text-center">{{ __('Action') }}</th>
                         </tr>
-                        @foreach($posts as $post)
-                            {!! Form::model($post, array('route' => array('editPost', $post->id),'method' =>'post')) !!}
+                        @foreach($places as $place)
+                            {!! Form::model($place, array('route' => array('editPlace', $place->id),'method' =>'post')) !!}
                             {!! csrf_field() !!}
                             <tr>
-                                <td>{{ $post->id }}</td>
-                                <td>{{ str_limit($post->content, $limit = 30, $end = '...') }}</td>
-                                <td>{!! Form::image('posts/images/'.$post->image,'success', array( 'width' => 100, 'height' => 100 ))  !!}</td>
-                                <td>{{ str_limit($post->url, $limit = 30, $end = '...') }}</td>
+                                <td>{{ str_limit($place->name, $limit = 30, $end = '...') }}</td>
+                                <td>{{ str_limit($place->address, $limit = 30, $end = '...') }}</td>
                                 </td>
                                 <td>
-                                    {!! Form::submit(__('Edit Post'),['class' => 'btn btn-block btn-info','route' => 'editPost','name' => 'editPost']) !!}
+                                    {!! Form::submit(__('Edit Place'),['class' => 'btn btn-block btn-info']) !!}
                                 </td>
-                                <td><a href="{{route('destroyPost', array('id' => $post->id))}}"
-                                       class="btn btn-danger float-lg-right">{{__('Xóa Bài Đăng')}}</a>
+                                <td><a href="{{route('destroyPlace', array('id' => $place->id))}}"
+                                       class="btn btn-danger float-lg-right">{{__('Xóa Cơ Sở')}}</a>
                                 </td>
                             </tr>
                             {!! Form::close() !!}

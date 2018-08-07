@@ -11,18 +11,19 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('getHome');
+Route::get('/', 'HomeController@index')->name('getHome');
 
+Auth::routes();
+
+Route::get('/get-products/{type?}', 'User\UserController@getProducts')->name('getProducts');
 
 Route::get('/product', 'Vendor\ProductController@newProduct')->name('newProduct');
 
 Route::get('/product/{id?}', 'Vendor\ProductController@editProduct')->name('editProduct');
 
-Route::post('/product', 'Vendor\ProductController@store')->name('storeProduct');
+Route::get('/getPost/{id?}/show', 'User\UserController@getPostDetail')->name('getPostDetail');
 
-Auth::routes();
+Route::post('/product', 'Vendor\ProductController@store')->name('storeProduct');
 
 Route::get('/login', 'Auth\LoginController@getLogin');
 
@@ -65,7 +66,7 @@ Route::group(array('prefix' => 'vendor', 'namespace' => 'Vendor', 'middleware' =
 
     Route::get('/login', 'VendorsController@showLoginForm');
 
-    Route::get('/createPost', 'VendorPostController@create');
+    Route::get('/createPost', 'VendorPostController@create')->name('createPost');
 
     Route::post('/createPost', 'VendorPostController@store')->name('storePost');
 
@@ -73,7 +74,7 @@ Route::group(array('prefix' => 'vendor', 'namespace' => 'Vendor', 'middleware' =
 
     Route::post('/editPosts/{id?}/edit', 'VendorPostController@edit')->name('editPost');
 
-    Route::get('/editPosts/{id?}/edit', 'VendorPostController@update')->name('updatePost');
+    Route::post('/editPosts/{id?}/update', 'VendorPostController@update')->name('updatePost');
 
     Route::get('/editPosts/{id?}/delete', 'VendorPostController@destroy')->name('destroyPost');
 
@@ -83,7 +84,20 @@ Route::group(array('prefix' => 'vendor', 'namespace' => 'Vendor', 'middleware' =
 
     Route::get('/product/{id}', 'VendorsController@editProduct');
 
+    Route::get('/createPlace', 'PlacesController@create')->name('showCreatePlaceForm');
+
+    Route::post('/createPlace', 'PlacesController@store')->name('storePlace');
+
+    Route::get('/places/{id?}', 'PlacesController@index')->name('indexPlace');
+
+    Route::post('/editPlaces/{id?}/edit', 'PlacesController@edit')->name('editPlace');
+
+    Route::post('/editPlaces/{id?}/update', 'PlacesController@update')->name('updatePlace');
+
+    Route::get('/editPlaces/{id?}/delete', 'PlacesController@destroy')->name('destroyPlace');
 });
+
+Route::get('/map', 'HomeController@getMap')->name('getMap');
 
 
 Route::get('/test', function () {

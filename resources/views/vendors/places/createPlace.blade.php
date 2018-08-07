@@ -25,34 +25,31 @@
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body pad">
-                    @if(empty($post))
-                        {!! Form::open(['method' => 'post','route' => 'storePost','files' => 'true']) !!}
-                        {!! Form::textarea('content',old('content'),['class'=>'form-control','row' => '10','col'=>'80']) !!}
+                    @if(empty($place))
+                        {!! Form::open(['method' => 'post','route' => 'storePlace']) !!}
                         <div class="form-group">
-                            {!! Form::label('image',trans('Image')) !!}
-                            {!! Form::file('image',null,['id' => 'exampleInputFile']) !!}
-                            <br/>
-                            {!! Form::label('url',trans('Đường Dẫn Trang Chi Tiết:')) !!}
-                            {!! Form::url('url', null, array('class' => 'form-control'))  !!}
-                            <p class="help-block">{{ __('For Image Post') }}</p>
+                            {!! Form::label('name',trans('Tên Cơ Sở :')) !!}
+                            {!! Form::text('name', old('name'), array('class' => 'form-control'))  !!}
+                        </div>
+                        <br/>
+                        <div class="form-group">
+                            {!! Form::label('address',trans('Địa Chỉ Cơ Sở :')) !!}
+                            {!! Form::text('address',old('address'),['class'=>'form-control']) !!}
                         </div>
                         {!! Form::submit(__('Đăng Bài'),['class'=>'btn btn-primary']) !!}
                         {!! Form::close() !!}
                     @else
-                        {!! Form::open(['method' => 'post', 'route' => array('updatePost', $post->id),'files'=> 'true' ]) !!}
-                        {!! Form::textarea('content',$post->content,['class'=>'form-control','row' => '10','col'=>'80']) !!}
+                        {!! Form::open(['method' => 'post', 'route' => array('updatePlace', $place->id),'files'=> 'true' ]) !!}
                         <div class="form-group">
-                            {!! Form::label('image',trans('Image')) !!}
-                            {!! Form::file('image',['id' => 'exampleInputFile']) !!}
-                            <br/>
-                            {!! Form::label('imageold',trans('Old Image: ')) !!}
-                            {!! Form::image('images/posts/'.$post->image,'success', array( 'width' => 100, 'height' => 100 ))  !!}
-                            <br/>
-                            {!! Form::label('url',trans('Đường Dẫn Trang Chi Tiết:')) !!}
-                            {!! Form::url('url', null, array('class' => 'form-control'))  !!}
-                            <p class="help-block">{{ __('For Image Post') }}</p>
+                            {!! Form::label('name',trans('Tên Cơ Sở :')) !!}
+                            {!! Form::text('name', $place->name, array('class' => 'form-control'))  !!}
                         </div>
-                        {!! Form::submit(__('Cập Nhật Bài Đăng') ,['class'=>'btn btn-primary']) !!}
+                        <br/>
+                        <div class="form-group">
+                            {!! Form::label('address',trans('Địa Chỉ Cơ Sở :')) !!}
+                            {!! Form::text('address',$place->address,['class'=>'form-control']) !!}
+                        </div>
+                        {!! Form::submit(__('Cập Nhật Cơ Sở'),['class'=>'btn btn-primary']) !!}
                         {!! Form::close() !!}
 
                     @endif

@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>{{ __('Trùm Sân - Xem Sân Bóng Và Đặt Sân Hiệu Q') }}</title>
+    <title>{{ __('Trùm Sân - Xem Sân Bóng Và Đặt Sân Hiệu Quả ') }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <link rel="stylesheet"
@@ -43,6 +43,7 @@
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
 <script type="text/javascript" src="{!! asset('bower_components/template_delux_hotel/assets/js/map.js') !!}"></script>
 <script type="text/javascript" src="{!! asset('bower_components/template_delux_hotel/assets/js/main.js') !!}"></script>
+
 
 </body>
 </html>
