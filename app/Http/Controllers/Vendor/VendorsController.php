@@ -35,20 +35,22 @@ class VendorsController extends Controller
         return view('auth/vendorLogin');
     }
 
-    public function deleteProduct($id){
+    public function deleteProduct($id)
+    {
         $products = Products::find($id);
 
         $products->delete();
 
-        return redirect('/vendorlist')->with('msg',"da xoa san bong thanh cong");
+        return redirect('/vendorlist')->with('msg', "da xoa san bong thanh cong");
     }
 
-//    public function destroy($id)
-//    {
-//        dd("jnsdjksnf");
-////        $products = products::whereId($id)->firstOrFail();
-////        $products->delete();
-////        return redirect('/vendorlist');
-//    }
+    public function getSearch(Request $req)
+    {
+        $products = Products::where('address','like','%'.$req->search.'%')
+            ->orwhere('description','like','%'.$req->search.'%')
+            ->orwhere('status','like','%'.$req->search.'%')
+            ->get();
 
+        return view('vendors.products.search', compact('products'));
+    }
 }

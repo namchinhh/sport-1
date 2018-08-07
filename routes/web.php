@@ -15,16 +15,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/test', function () {
-    return view('vendors.shared.master');
-});
-
 Route::get('/vendorlist', 'Vendor\VendorsController@getHomeData');
 
-Route::get('/delete-product/{id}','Vendor\VendorsController@deleteProduct');
+Route::get('/delete-product/{id}', 'Vendor\VendorsController@deleteProduct');
 
-//Route::post('/destroyProduct', 'Vendor\VendorsController@destroy')->name('destroyProduct');
-
+Route::get('search', 'Vendor\VendorsController@getSearch');
 
 Auth::routes();
 

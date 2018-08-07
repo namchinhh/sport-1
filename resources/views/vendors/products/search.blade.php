@@ -5,7 +5,7 @@
             <div class="col-xs-12">
                 <div class="box">
                     <div class="box-header">
-                        <h3 class="box-title">{{ __('Danh sách sân') }}</h3>
+                        <h3 class="box-title">{{ __('Kết quả tìm kiếm') }}</h3>
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
@@ -18,13 +18,12 @@
                                 <th>{{ __("Trạng thái") }}</th>
                                 <th>{{ __("Khởi tạo") }}</th>
                                 <th>{{ __("Cập nhật") }}</th>
-                                <th>{{ __("xóa sân") }}</th>
                             </thead>
                             <tbody>
-                            @for($i=0;$i<count($products);$i++)
+                            @foreach($products as $product)
                                 @php
-                                    $statusString;
-                                    if($products[$i]->status == 1)
+                                    $statusString = "";
+                                    if($product->status == 1)
                                     {
                                         $statusString = "còn sân";
                                     }else
@@ -33,19 +32,14 @@
                                     }
                                 @endphp
                                 <tr>
-                                    <td>{{ $products[$i]->id }}</td>
-                                    <td>{{ $products[$i]->address }}</td>
-                                    <td>{{ $products[$i]->description }}</td>
-                                    <td>{{ $statusString }}</td>
-                                    <td>{{ $products[$i]->created_at }}</td>
-                                    <td>{{ $products[$i]->updated_at }}</td>
-                                    <td>
-                                        <a href='{{ url('/delete-product/'.$products[$i]->id) }}'>
-                                            <button type="submit" class="btn btn-warning">{{ __('Xóa') }}</button>
-                                        </a>
-                                    </td>
+                                    <td>{{ $product->id }}</td>
+                                    <td>{{ $product->address }}</td>
+                                    <td>{{ $product->description }}</td>
+                                    <td>{{ $statusString}}</td>
+                                    <td>{{ $product->created_at }}</td>
+                                    <td>{{ $product->updated_at }}</td>
                                 </tr>
-                            @endfor
+                            @endforeach
                             </tbody>
                         </table>
                     </div>
