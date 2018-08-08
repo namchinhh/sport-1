@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', 'HomeController@index')->name('getHome');
+Route::get('/index', 'HomeController@index')->name('getHome');
 
 Auth::routes();
 
@@ -53,8 +53,6 @@ Route::get('/logout', 'Auth\LoginController@logout');
 
 
 Route::group(array('prefix' => 'user', 'namespace' => 'User', 'middleware' => 'user'), function () {
-
-    Route::get('/', 'UserController@home');
 
 });
 
