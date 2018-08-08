@@ -9,6 +9,7 @@ use App\Post;
 use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Collection;
 
 class UserController extends Controller
 {

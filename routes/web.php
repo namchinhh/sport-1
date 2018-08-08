@@ -15,19 +15,19 @@ Route::get('/index', 'HomeController@index')->name('getHome');
 
 Auth::routes();
 
-Route::get('/getPlaces/{type?}', 'User\UserController@getPlaces')->name('getPlaces');
-
-Route::get('/getProducts/{idPlace?}', 'User\UserController@getProducts')->name('getProducts');
-
 Route::get('/booking/{optionId?}', 'User\BookingController@store')->name('booking');
-
-Route::get('/getPost/{id?}/show', 'User\UserController@getPostDetail')->name('getPostDetail');
 
 Route::post('/uploadProductImage', 'Vendor\UploadController@postImages')->name('uploadProductImage');
 
 Route::post('/removeProductImage', 'Vendor\UploadController@removeImages')->name('removeProductImage');
 
 Auth::routes();
+
+Route::get('/getPlaces/{type?}', 'User\UserController@getPlaces')->name('getPlaces');
+
+Route::get('/getProducts/{idPlace?}','User\UserController@getProducts')->name('getProducts');
+
+Route::get('/getPost/{id?}/show', 'User\UserController@getPostDetail')->name('getPostDetail');
 
 Route::get('/login', 'Auth\LoginController@getLogin');
 
@@ -74,7 +74,9 @@ Route::group(array('prefix' => 'vendor', 'namespace' => 'Vendor', 'middleware' =
 
     Route::get('/logout', 'VendorsController@logout');
 
-    Route::get('/product/new', 'VendorsController@createProduct');
+    Route::get('/product/new', 'ProductController@newProduct')->name('newProduct');
+
+    Route::get('/product/{id}', 'ProductController@editProduct')->name('editProduct');
 
     Route::post('/product', 'ProductController@store')->name('storeProduct');
 
