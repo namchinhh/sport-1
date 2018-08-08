@@ -7,7 +7,9 @@ use App\Product;
 use App\Place;
 use App\Post;
 use App\Http\Controllers\Controller;
+use App\User;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Collection;
 
 class UserController extends Controller
 {
@@ -28,7 +30,7 @@ class UserController extends Controller
         return view('postDetail', compact('post'));
     }
 
-    public function getProducts($type)
+    public function getPlaces($type)
     {
         if ($type == 'football') {
             $namePage = __('Sân Bóng');
@@ -44,42 +46,81 @@ class UserController extends Controller
         }
         $places = Place::all();
         $data = [];
-        $products = Product::where('type', $type)->get();
+
+
         foreach ($places as $place) {
+
+            //getPosts for right-box
+
             $placeArr['place_id'] = $place->id;
             $placeArr['name'] = $place->name;
             $placeArr['address'] = $place->address;
-            $placeArr['image'] = Product::where('place_id', $place->id)->firstOrFail()->images;
-            $placeArr['content'] = Product::where('place_id', $place->id)->firstOrFail()->description;
-            $productOptionData = [];
-            $option = [];
-            foreach ($products as $product) {
-                if ($product->place_id == $place->id) {
-                    $productOption[] = Option::where('product_id', $product->id)->get();
+            try {
+                $placeArr['image'] = Product::where('place_id', $place->id)->firstOrFail()->images;
+                $placeArr['content'] = Product::where('place_id', $place->id)->firstOrFail()->description;
+            } catch (\Exception $e) {
+            }
+            $minTimeProduct = "";
+            $maxTimeProduct = "";
+            $user = User::where('id', $place->vendor_id)->firstOrFail();
+            $vendor_name = $user->name;
+            $placeArr['vendor_name'] = $vendor_name;
+            $products = Product::where('type', $type)->Where('place_id', $place->id)->get();
+            $productOption = [];
+            if (count($products) > 0) {
+                foreach ($products as $product) {
+                    if ($product->place_id == $place->id) {
+                        $productOption[] = Option::where('product_id', $product->id)->get();
+                    }
+                }
+                $options = [];
+
+                foreach ($productOption as $option) {
+                    $min = substr($option[0]->title, 0, 5);
+                    $max = substr($option[0]->title, 8, 5);
+
+                    if ($minTimeProduct == "" || $minTimeProduct > $min) {
+                        $minTimeProduct = $min;
+                    }
+                    if ($maxTimeProduct == "" || $maxTimeProduct < $max) {
+                        $maxTimeProduct = $max;
+                    }
+                    $options[] = $minTimeProduct;
+                    $options[] = $maxTimeProduct;
+
+                }
+                sort($options);
+                $data['option'][$place->id] = $options[0] . ' - ' . $options[count($options) - 1];
+
+                $prices = [];
+                foreach ($productOption as $option) {
+                    $price = $option[0]->price;
+                    $prices[] = $price;
+                }
+                sort($prices);
+                if ($prices[0] != $prices[count($prices) - 1]) {
+                    $data['price'][$place->id] = 'Form: ' . $prices[0] . ' To: ' . $prices[count($prices) - 1];
+                } else {
+                    $data['price'][$place->id] = $priceToShow = $prices[0];
+
                 }
             }
-            for ($dem = 0; $dem < sizeof($productOption); $dem++) {
-                if (sizeof($productOption[$dem]) > 0) {
-                    $title = $productOption[$dem][0]->title;
-                }
-                $min = substr($title, 0, 5);
-                $max = substr($title, 8, 5);
-                $productOptionData[] = $min;
-                $productOptionData[] = $max;
-            }
+            $data [] = $placeArr;
         }
+        $posts = DB::table('posts')->get()->forPage(1, 4);
+        $data [] = $posts;
+        return view('users.places', compact('data'), compact('namePage'));
+    }
 
-        sort($productOptionData);
-        dd($productOptionData);
-        $option [] = $productOptionData[0];
-        $option [] = $productOptionData[sizeof($productOptionData) - 1];
-        $placeArr['option'] = $option;
-        $data [] = $placeArr;
-
-        dd($data);
-
-
-        return view('users.products', compact('data'), compact('namePage'));
-
+    public function getProducts($idPlace)
+    {
+        $placeName = Place::where('id', $idPlace)->firstOrFail()->name;
+        $products = Product::where('place_id', $idPlace)->get();
+        $optionsOfProduct = [];
+        foreach ($products as $product) {
+            $options = Option::where('product_id', $product->id)->get();
+            $optionsOfProduct[$product->id] = $options;
+        }
+        return view('users.products', compact('products'), compact('optionsOfProduct'))->with('placeName', $placeName);
     }
 }

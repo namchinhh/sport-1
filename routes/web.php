@@ -15,7 +15,9 @@ Route::get('/', 'HomeController@index')->name('getHome');
 
 Auth::routes();
 
-Route::get('/get-products/{type?}', 'User\UserController@getProducts')->name('getProducts');
+Route::get('/getPlaces/{type?}', 'User\UserController@getPlaces')->name('getPlaces');
+
+Route::get('/getProducts/{idPlace?}','User\UserController@getProducts')->name('getProducts');
 
 Route::get('/product', 'Vendor\ProductController@newProduct')->name('newProduct');
 
@@ -40,6 +42,7 @@ Route::post('/vendorRegister', 'Auth\RegisterController@createVendor');
 Route::get('/vendorRegister', 'Auth\LoginController@getVendorRegister');
 
 Route::get('/logout', 'Auth\LoginController@logout');
+
 
 
 Route::group(array('prefix' => 'user', 'namespace' => 'User', 'middleware' => 'user'), function () {
