@@ -41,11 +41,11 @@
                                                                 </span>
                                                         </li>
                                                         <li><i class="fa fa-clock-o"></i> <span>
-                                                            @if(!empty($data['option'][$i]))
-                                                                    {!! $data['option'][$i] !!}
-                                                                    @if(!empty($data['price'][$i]))
+                                                            @if(!empty($data['option'][$data[$i]['place_id']]))
+                                                                    {!! $data['option'][$data[$i]['place_id']] !!}
+                                                                    @if(!empty($data['price'][$data[$i]['place_id']]))
                                                                         <i class="fa fa-dollar"></i>
-                                                                        <span>{!! $data['price'][$i] !!}</span>
+                                                                        <span>{!! $data['price'][$data[$i]['place_id']] !!}</span>
                                                                     @else
                                                                         {{ __('Chưa Có Giá Đặt Trước Cho Địa Điểm') }}
                                                                     @endif
