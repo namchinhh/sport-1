@@ -1,19 +1,33 @@
 @extends('master')
 @section('content')
+
+
     <section class="best-room">
         <div class="container">
+            @if (session('status'))
+                <div class="alert alert-success">
+                    {{ session('status') }}
+                </div>
+            @endif
+            @if(session('error'))
+                <div class="alert alert-danger">
+                    {{ session('error') }}
+                </div>
+            @endif
             <div class="title-main">
                 <h2 class="h2">{{ __('Các Sân Của Cơ Sở: ') }}{!! $placeName !!} <span
                             class="title-secondary">{{ __('Hiển Thị Các Sân Thuộc Cơ Sở ') }}</span>
                 </h2>
             </div>
+
             <div class="best-room-carousel">
+
                 <ul class="row best-room_ul">
                     @if(count($products) > 0)
                         @foreach($products as $product)
                             <li class="col-lg-4 col-md-4 col-sm-6 col-xs-12 best-room_li">
                                 <div class="best-room_img">
-                                    <a href="#"><img src="{{ asset('images/best-rooms/1.jpg') }}" alt=""></a>
+                                    <a href="#"><img src="{{ asset('images/best-rooms/'.$product->thumbnail) }}" alt=""></a>
                                     <div class="best-room_overlay">
                                         <div class="overlay_icn"><a href="#"></a></div>
                                     </div>
@@ -22,10 +36,14 @@
                                     <div class="best-room_t">
                                         {{ $product->description }}
                                     </div>
+                                    <div id="demo"></div>
                                     <div class="best-room_price">
                                         @foreach($optionsOfProduct[$product->id] as $item)
-                                            <a href="#"><span>{!! $item->title  !!}</span>
-                                                / {{ __('Giá: ') }} {!! $item->price !!}</a> <br/>
+                                            <div>
+                                                {!! Form::button(' <span>'.$item->title.'</span>'.'/'.
+                                                 __('Giá:') . $item->price . '<br/>',
+                                                array('class' => ' btn btn-primary', 'type' => 'button','onclick' => 'myFunction('.$item->id.');')) !!}
+                                            </div>
                                         @endforeach
                                     </div>
                                 </div>
@@ -39,4 +57,13 @@
         </div>
         <div></div>
     </section>
+    <script>
+        function myFunction(id) {
+            if (confirm(("Thực Hiện Đặt Sân Với Optioidn Đã Chọn?"))) {
+                document.location.href = "{!! route('booking'); !!}" + '/' + id;
+            } else {
+
+            }
+        }
+    </script>
 @endsection

@@ -9,7 +9,6 @@ use App\Post;
 use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Collection;
 
 class UserController extends Controller
 {
@@ -123,4 +122,6 @@ class UserController extends Controller
         }
         return view('users.products', compact('products'), compact('optionsOfProduct'))->with('placeName', $placeName);
     }
+
+
 }

@@ -44,13 +44,13 @@
                                        aria-expanded="false">{{ __('Tìm Sân ') }} <span class="caret"></span></a>
                                     <ul class="dropdown-menu">
                                         <li>
-                                            <a href="{{ route('getProducts',array('type' => 'football')) }}">{{ __('Sân Bóng ') }}</a>
+                                            <a href="{{ route('getPlaces',array('type' => 'football')) }}">{{ __('Sân Bóng ') }}</a>
                                         </li>
                                         <li>
-                                            <a href="{{ route('getProducts',array('type' => 'tennis')) }}">{{ __('Sân Tenis ') }}</a>
+                                            <a href="{{ route('getPlaces',array('type' => 'tennis')) }}">{{ __('Sân Tenis ') }}</a>
                                         </li>
                                         <li>
-                                            <a href="{{ route('getProducts',array('type' => 'swimming-pool')) }}">{{ __('Bể Bơi ') }}</a>
+                                            <a href="{{ route('getPlaces',array('type' => 'swimming-pool')) }}">{{ __('Bể Bơi ') }}</a>
                                         </li>
                                         <li><a href="gallery.html">{{ __('Đã Từng Đặt ') }}</a></li>
                                     </ul>
