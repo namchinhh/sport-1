@@ -12,7 +12,8 @@
           href="{!! asset('bower_components/template_delux_hotel/assets/images/favicon/favicon.png') !!}">
     <link rel="stylesheet" href="{!! asset('bower_components/template_delux_hotel/assets/css/style.css') !!}">
     <link rel="stylesheet" href="{!! asset('bower_components/template_delux_hotel/assets/css/responsive.css') !!}">
-
+    <script type="text/javascript"
+            src="{!! asset('bower_components/template_delux_hotel/assets/js/jquery.min.js') !!}"></script>
 
 </head>
 <body>
@@ -23,8 +24,7 @@
 
 @include('shared.footer')
 
-<script type="text/javascript"
-        src="{!! asset('bower_components/template_delux_hotel/assets/js/jquery.min.js') !!}"></script>
+
 <script type="text/javascript"
         src="{!! asset('bower_components/template_delux_hotel/assets/js/tether.min.js') !!}"></script>
 <script type="text/javascript"

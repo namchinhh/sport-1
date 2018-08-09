@@ -228,6 +228,7 @@
 
                     var images = JSON.parse("{{ $images }}".replace(/&quot;/ig, '"'), true);
 
+                    console.log(images);
                     for (var image in images) {
 
                         var mockFile = {name: image, size: images[image]};

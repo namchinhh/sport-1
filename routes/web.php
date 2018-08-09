@@ -17,7 +17,7 @@ Route::get('/index', 'HomeController@index')->name('getHome');
 
 Auth::routes();
 
-Route::get('/booking/{optionId?}', 'User\BookingController@store')->name('booking');
+Route::get('/booking/{optionId?}/{mm?}/{dd?}/{yyyy?}', 'User\BookingController@store')->name('booking');
 
 Route::post('/uploadProductImage', 'Vendor\UploadController@postImages')->name('uploadProductImage');
 
@@ -27,7 +27,7 @@ Auth::routes();
 
 Route::get('/getPlaces/{type?}', 'User\UserController@getPlaces')->name('getPlaces');
 
-Route::get('/getProducts/{idPlace?}','User\UserController@getProducts')->name('getProducts');
+Route::get('/getProducts/{idPlace?}', 'User\UserController@getProducts')->name('getProducts');
 
 Route::get('/booked', 'User\UserController@getBooked')->name('getBooked');
 
@@ -61,8 +61,6 @@ Route::get('users/login', [
 Route::group(array('prefix' => 'vendor', 'namespace' => 'Vendor', 'middleware' => 'vendor'), function () {
 
     Route::get('/', 'VendorsController@home');
-
-    Route::get('/login', 'VendorsController@showLoginForm');
 
     Route::get('/createPost', 'VendorPostController@create')->name('createPost');
 

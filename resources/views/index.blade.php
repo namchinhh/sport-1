@@ -53,7 +53,7 @@
                 <div class="item">
                     <img class="img-responsive" src="{{ asset('posts/images/'.$post->image) }}">
                     <p>{!! $post->content !!}</p>
-                    <a href="{{ url('') }}">{{ _('Xem') }}</a>
+                    <a href="{{ url($post->url) }}">{{ _('Xem') }}</a>
                 </div>
             @endforeach
         </div>

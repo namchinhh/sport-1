@@ -57,6 +57,52 @@
         </div>
         <div>
         </div>
+        <label>Chọn ngày: </label>
+        <div id="datepicker" class="input-group date" data-date-format="dd-mm-yyyy">
+            <input class="form-control" readonly="" type="text" id="date-chosen">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+        </div>
+        <style>label {
+                margin-left: 20px;
+            }
+
+            #datepicker {
+                width: 180px;
+                margin: 0 20px 20px 20px;
+            }
+
+            #datepicker > span:hover {
+                cursor: pointer;
+            }
+        </style>
+
+        <script type="text/javascript">
+            function myFunction(id) {
+                if (confirm(("Thực Hiện Đặt Sân Với Optioidn Đã Chọn?"))) {
+                    var date = $('#date-chosen').val();
+                    var dateArray = date.split("-");
+                    var day = dateArray[0];
+                    var month = dateArray[1];
+                    var year = dateArray[2];
+                    if (date == "") {
+                        alert('{{ __('Bạn phải chọn này trước khi đặt.') }}');
+                    } else
+                        document.location.href = "{!! route('booking'); !!}" + '/' + id + '/' + day + '/' + month + '/' + year;
+                } else {
+
+                }
+            }
+
+            $(function () {
+                $("#datepicker").datepicker({
+                    autoclose: true,
+                    todayHighlight: true
+                }).datepicker('update', new Date());
+            });
+        </script>
+        <link rel="stylesheet prefetch"
+              href="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.css">
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.js"></script>
     </section>
 
 @endsection

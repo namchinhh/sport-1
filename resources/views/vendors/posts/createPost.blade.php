@@ -46,10 +46,10 @@
                             {!! Form::file('image',['id' => 'exampleInputFile']) !!}
                             <br/>
                             {!! Form::label('imageold',trans('Old Image: ')) !!}
-                            {!! Form::image('images/posts/'.$post->image,'success', array( 'width' => 100, 'height' => 100 ))  !!}
+                            {!! Form::image('posts/images/'.$post->image,'success', array( 'width' => 100, 'height' => 100 ))  !!}
                             <br/>
                             {!! Form::label('url',trans('Đường Dẫn Trang Chi Tiết:')) !!}
-                            {!! Form::url('url', null, array('class' => 'form-control'))  !!}
+                            {!! Form::url('url', $post->url, array('class' => 'form-control'))  !!}
                             <p class="help-block">{{ __('For Image Post') }}</p>
                         </div>
                         {!! Form::submit(__('Cập Nhật Bài Đăng') ,['class'=>'btn btn-primary']) !!}

@@ -40,14 +40,14 @@ class BookingController extends Controller
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store($optionId)
+    public function store($optionId, $day, $month, $year)
     {
+        $date = $month . '/' . $day . '/' . $year;
+        $dateD = strtotime($date);
         $option = Option::findOrFail($optionId);
         $product = Product::findOrFail($option->product_id);
         $vendor_id = $product->vendor_id;
         $price = $option->price;
-        $status = "pending";
-        $date = new DateTime('now');
         $optionchoosen = $option->title;
         if (Auth::check()) {
             $user_id = Auth::user()->id;
@@ -61,7 +61,7 @@ class BookingController extends Controller
                 'product_id' => $product_id,
                 'option_id' => $optionId,
                 'total_price' => $price,
-                'date' => $date,
+                'date' => date('Y-m-d', $dateD),
                 'option_chosen' => $optionchoosen,
                 'status' => 1,
                 'vendor_id' => $vendor_id,

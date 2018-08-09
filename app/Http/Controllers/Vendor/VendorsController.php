@@ -46,9 +46,9 @@ class VendorsController extends Controller
 
     public function getSearch(Request $req)
     {
-        $products = Product::where('address','like','%'.$req->search.'%')
-            ->orwhere('description','like','%'.$req->search.'%')
-            ->orwhere('status','like','%'.$req->search.'%')
+        $products = Product::where('address', 'like', '%' . $req->search . '%')
+            ->orwhere('description', 'like', '%' . $req->search . '%')
+            ->orwhere('status', 'like', '%' . $req->search . '%')
             ->get();
 
         return view('vendors.products.search', compact('products'));

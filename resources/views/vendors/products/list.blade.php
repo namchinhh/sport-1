@@ -42,7 +42,7 @@
                                 @endphp
                                 <tr>
                                     <td>{{ $products[$i]->id }}</td>
-                                    <td>{{ $products[$i]->description }}</td>
+                                    <td>{!! $products[$i]->description !!}</td>
                                     <td>{{ $statusString }}</td>
                                     <td>{{ $products[$i]->created_at }}</td>
                                     <td>{{ $products[$i]->updated_at }}</td>

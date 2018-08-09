@@ -52,16 +52,16 @@ class UserController extends Controller
 
             switch ($booking->status) {
                 case 1:
-                    $status = "Pending";
+                    $status = "Đang Chờ";
                     break;
                 case 2:
-                    $status = "Success";
+                    $status = "Đã Chấp Nhận";
                     break;
                 case 3:
-                    $status = "Cancel";
+                    $status = "Đã Hủy Bỏ ";
                     break;
                 default:
-                    $status = "Pending";
+                    $status = "Đang Chờ  ";
                     break;
 
             }

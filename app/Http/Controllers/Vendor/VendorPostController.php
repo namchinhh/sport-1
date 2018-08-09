@@ -17,7 +17,7 @@ class VendorPostController extends Controller
      */
     public function index()
     {
-        $posts = Post::all();
+        $posts = Post::whereVendorId(Auth::user()->id)->get();
         return view('vendors.posts.getPosts', compact('posts'));
     }
 
@@ -78,7 +78,7 @@ class VendorPostController extends Controller
     public function edit($id)
     {
         //
-        $post = Post::whereId($id)->findOrFail();
+        $post = Post::findOrFail($id);
 
         return view('vendors.posts.createPost', compact('post'));
     }
@@ -99,7 +99,7 @@ class VendorPostController extends Controller
             try {
                 $photoName = time() . '.' . $request->file('image')->getClientOriginalExtension();
                 $request->image->move(public_path('posts/images/'), $photoName);
-                $post = Post::whereId($id)->findOrFail();
+                $post = Post::findOrFail($id);
                 $post->image = $photoName;
                 $post->content = $request->get('content');
                 $post->url = $request->get('url');
