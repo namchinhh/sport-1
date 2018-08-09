@@ -80,9 +80,8 @@
                 </a>
                 <ul class="treeview-menu">
                     <li><a href="#"><i class="fa fa-circle-o"></i>{{ __('Lịch sân bóng') }}</a></li>
-                    <li><a href="#"><i class="fa fa-circle-o"></i>{{ __('Lịch bể bơi') }}</a></li>
                     <li><a href="#"><i class="fa fa-circle-o"></i>{{ __('Quản lý lịch') }}</a></li>
-                    <li><a href="#"><i class="fa fa-circle-o"></i>{{ __('Đơn đặt sân') }}</a></li>
+                    <li><a href="{{ route('listBookingVendor') }}"><i class="fa fa-circle-o"></i>{{ __('Đơn đặt sân') }}</a></li>
                 </ul>
             </li>
             <li class="treeview">

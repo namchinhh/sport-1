@@ -67,8 +67,10 @@ class BookingController extends Controller
                 'vendor_id' => $vendor_id,
             ]);
         } catch (\Exception $exception) {
+
             return redirect()->back()->with('error', $exception->getMessage());
         }
+
         return redirect()->back()->with('status', 'Booking' . $optionId . 'has been done');
     }
 

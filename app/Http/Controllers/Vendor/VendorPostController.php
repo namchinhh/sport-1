@@ -17,7 +17,7 @@ class VendorPostController extends Controller
      */
     public function index()
     {
-        $posts = DB::table('posts')->get();
+        $posts = Post::all();
         return view('vendors.posts.getPosts', compact('posts'));
     }
 

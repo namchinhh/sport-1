@@ -78,6 +78,12 @@ Route::group(array('prefix' => 'vendor', 'namespace' => 'Vendor', 'middleware' =
 
     Route::get('/logout', 'VendorsController@logout');
 
+    Route::get('/booking', 'BookingController@listBooking')->name('listBookingVendor');
+
+    Route::get('/acceptBooking/{id?}', 'BookingController@acceptBooking')->name('acceptBooking');
+
+    Route::get('/rejectBooking/{id?}', 'BookingController@rejectBooking')->name('rejectBooking');
+
     Route::get('/product/new', 'ProductController@newProduct')->name('newProduct');
 
     Route::get('/product/{id}', 'ProductController@editProduct')->name('editProduct');
