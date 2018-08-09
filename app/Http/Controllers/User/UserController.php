@@ -37,13 +37,12 @@ class UserController extends Controller
     {
         $userId = Auth::user()->id;
         $bookings = Booking::whereUserId($userId);
-        dd($bookings);
-        $data =[];
+        $data = [];
         foreach ($bookings as $booking) {
 
         }
 
-        return view('users.booked',compact(['data']));
+        return view('users.booked', compact(['data']));
     }
 
     public function getPlaces($type)

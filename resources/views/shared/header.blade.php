@@ -65,7 +65,18 @@
                                 @if(\Illuminate\Support\Facades\Auth::check())
                                     <li><a href="{{ route('logout') }}">{{ __('Đăng Xuất   ') }}</a></li>
                                 @else
-                                    <li><a href="#">{{ __('Đăng Nhập   ') }}</a></li>
+                                    <li><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                                           aria-expanded="false">{{ __('Đăng Nhập ') }} <span class="caret"></span></a>
+                                        <ul class="dropdown-menu">
+                                            @if(\Illuminate\Support\Facades\Auth::check())
+                                                <li><a href="{!! url('/logout') !!}">{{ __('Đăng Xuất   ') }}</a></li>
+                                            @else
+                                                <li><a href="{!! url('/login') !!}">{{ __(' Người Thuê Sân  ') }}</a>
+                                                </li>
+                                                <li><a href="{!! url('/vendorLogin') !!}">{{ __('Chủ Sân  ') }}</a></li>
+                                            @endif
+                                        </ul>
+                                    </li>
                                     <li><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
                                            aria-expanded="false">{{ __('Đăng Kí ') }} <span class="caret"></span></a>
                                         <ul class="dropdown-menu">
