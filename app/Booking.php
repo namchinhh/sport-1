@@ -6,10 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Booking extends Model
 {
-
     protected $guarded = ['id'];
 
-    //
+    protected $table = 'booking';
+
     public function user()
     {
         return $this->belongsTo('App\User');

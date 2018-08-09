@@ -32,4 +32,9 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Places');
     }
+
+    public function booking()
+    {
+        return $this->hasMany('App\Booking');
+    }
 }

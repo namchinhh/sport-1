@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\User;
 
+use App\Booking;
 use App\Option;
 use App\Product;
 use App\Place;
@@ -9,6 +10,7 @@ use App\Post;
 use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Collection;
 
 class UserController extends Controller
@@ -27,7 +29,21 @@ class UserController extends Controller
     public function getPostDetail($id)
     {
         $post = Post::whereId($id)->findOrFail();
+
         return view('postDetail', compact('post'));
+    }
+
+    public function getBooked()
+    {
+        $userId = Auth::user()->id;
+        $bookings = Booking::whereUserId($userId);
+        dd($bookings);
+        $data =[];
+        foreach ($bookings as $booking) {
+
+        }
+
+        return view('users.booked',compact(['data']));
     }
 
     public function getPlaces($type)
@@ -102,13 +118,13 @@ class UserController extends Controller
                     $data['price'][$place->id] = 'Form: ' . $prices[0] . ' To: ' . $prices[count($prices) - 1];
                 } else {
                     $data['price'][$place->id] = $priceToShow = $prices[0];
-
                 }
             }
             $data [] = $placeArr;
         }
         $posts = DB::table('posts')->get()->forPage(1, 4);
         $data [] = $posts;
+
         return view('users.places', compact('data'), compact('namePage'));
     }
 
@@ -121,6 +137,7 @@ class UserController extends Controller
             $options = Option::where('product_id', $product->id)->get();
             $optionsOfProduct[$product->id] = $options;
         }
+
         return view('users.products', compact('products'), compact('optionsOfProduct'))->with('placeName', $placeName);
     }
 
