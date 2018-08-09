@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Vendor;
 
-use App\Products;
+use App\Product;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
@@ -37,16 +37,16 @@ class VendorsController extends Controller
 
     public function deleteProduct($id)
     {
-        $products = Products::find($id);
+        $products = Product::findOrFail($id);
 
         $products->delete();
 
-        return redirect('/vendorlist')->with('msg', "da xoa san bong thanh cong");
+        return redirect('/vendorlist')->with('msg', "Đã xóa thành công!");
     }
 
     public function getSearch(Request $req)
     {
-        $products = Products::where('address','like','%'.$req->search.'%')
+        $products = Product::where('address','like','%'.$req->search.'%')
             ->orwhere('description','like','%'.$req->search.'%')
             ->orwhere('status','like','%'.$req->search.'%')
             ->get();

@@ -9,8 +9,14 @@
                             <button type="button" class="btn btn-primary btn-lg">{{ __('Thêm Mới') }}</button>
                         </a>
                     </div>
-
-                    <!-- /.box-header -->
+                    @if(session('msg'))
+                        <div class="alert alert-success alert-dismissible">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                            <i class="icon fa fa-check"></i>
+                            {{ session('msg') }}
+                        </div>
+                @endif
+                <!-- /.box-header -->
                     <div class="box-body">
                         <table id="example2" class="table table-bordered table-hover">
                             <thead>
@@ -46,7 +52,7 @@
                                         </a>
                                     </td>
                                     <td>
-                                        <a href='{{ url('/delete-product/'.$products[$i]->id) }}'>
+                                        <a href='{{ url('vendor/delete-product/'.$products[$i]->id) }}'>
                                             <button type="submit" class="btn btn-warning">{{ __('Xóa') }}</button>
                                         </a>
                                     </td>

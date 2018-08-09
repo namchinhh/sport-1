@@ -21,13 +21,7 @@ Route::get('/getProducts/{idPlace?}', 'User\UserController@getProducts')->name('
 
 Route::get('/booking/{optionId?}', 'User\BookingController@store')->name('booking');
 
-Route::get('/product', 'Vendor\ProductController@newProduct')->name('newProduct');
-
-Route::get('/product/{id?}', 'Vendor\ProductController@editProduct')->name('editProduct');
-
 Route::get('/getPost/{id?}/show', 'User\UserController@getPostDetail')->name('getPostDetail');
-
-Route::post('/product', 'Vendor\ProductController@store')->name('storeProduct');
 
 Route::post('/uploadProductImage', 'Vendor\UploadController@postImages')->name('uploadProductImage');
 
@@ -50,7 +44,6 @@ Route::post('/vendorRegister', 'Auth\RegisterController@createVendor');
 Route::get('/vendorRegister', 'Auth\LoginController@getVendorRegister');
 
 Route::get('/logout', 'Auth\LoginController@logout');
-
 
 Route::group(array('prefix' => 'user', 'namespace' => 'User', 'middleware' => 'user'), function () {
 
@@ -83,7 +76,11 @@ Route::group(array('prefix' => 'vendor', 'namespace' => 'Vendor', 'middleware' =
 
     Route::get('/product/new', 'VendorsController@createProduct');
 
-    Route::get('/product/{id}', 'VendorsController@editProduct');
+    Route::post('/product', 'ProductController@store')->name('storeProduct');
+
+    Route::get('/vendorlist', 'VendorsController@getHomeData')->name('listProduct');
+
+    Route::get('/delete-product/{id?}', 'VendorsController@deleteProduct')->name('deleteProduct');
 
     Route::get('/createPlace', 'PlacesController@create')->name('showCreatePlaceForm');
 

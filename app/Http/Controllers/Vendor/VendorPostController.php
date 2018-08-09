@@ -120,7 +120,7 @@ class VendorPostController extends Controller
     public function destroy($id)
     {
         //
-        $post = Post::whereId($id)->findOrFail();
+        $post = Post::findOrFail($id);
         $post->delete();
 
         return redirect('vendor/posts')->with('status', __('The Post ' . $id . ' has been deleted'));

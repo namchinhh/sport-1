@@ -24,8 +24,12 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-3">
-                        <div class="logo"><a href="index-2.html" class="navbar-brand page-scroll"><img
-                                        src="{{ asset('images/logo/logo.png') }}" alt="logo"/></a></div>
+                        <div class="logo">
+                            <a href="#" class="navbar-brand page-scroll">
+                                <img src="{!! asset('logo/trumsan.png')!!}"
+                                     alt="logo"/>
+                            </a>
+                        </div>
                     </div>
                     <div class="col-lg-9">
                         <div class="navbar-header">
@@ -37,7 +41,7 @@
                         </div>
                         <div class="collapse navbar-collapse navbar-main-collapse">
                             <ul class="nav navbar-nav navbar-right">
-                                <li class=" active"><a href="index-2.html">{{ __('Trang Chủ ') }}</a></li>
+                                <li class=" active"><a href="{{ route('getHome') }}">{{ __('Trang Chủ ') }}</a></li>
                                 <li><a href="#" class="dropdown-toggle"
                                        data-toggle="dropdown"
                                        role="button"
@@ -52,17 +56,10 @@
                                         <li>
                                             <a href="{{ route('getPlaces',array('type' => 'swimming-pool')) }}">{{ __('Bể Bơi ') }}</a>
                                         </li>
-                                        <li><a href="gallery.html">{{ __('Đã Từng Đặt ') }}</a></li>
+                                        <li><a href="#">{{ __('Đã Từng Đặt ') }}</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="wizzard-step1.html">{{ __('Đặt Sân Ngay  ') }}</a></li>
-                                <li><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                                       aria-expanded="false">{{ __('Xem Nhận Xét ') }} <span class="caret"></span></a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="blog.html">{{ __('Số Lượt Bình Chọn Cao ') }}</a></li>
-                                        <li><a href="blog-detail.html">{{ __('Bình Chọn Của Bạn ') }}</a></li>
-                                    </ul>
-                                </li>
+                                <li><a href="#">{{ __('Đặt Sân Ngay  ') }}</a></li>
                                 <li><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
                                        aria-expanded="false">{{ __('Đăng Nhập ') }} <span class="caret"></span></a>
                                     <ul class="dropdown-menu">

@@ -14,3 +14,4 @@ yarn-error.log
 app/Providers/AppServiceProvider.php
 /public/bower_components
 /public/product_photo
+/public/posts

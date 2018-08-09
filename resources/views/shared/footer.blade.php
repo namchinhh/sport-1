@@ -4,7 +4,7 @@
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                     <div class="footer-top_logo"><a href="index-2.html">
-                            <img src="{{ asset('images/logo/logo.png') }}" alt="Footer logo"/></a></div>
+                            <img src="{{ asset('logo/trumsan.png') }}" alt="Footer logo"/></a></div>
                     <div class="footer-top_txt">
                         <p>{{ __('Trang Web Cung Cấp Địa Chỉ Các Sân Bóng! Giúp Bạn Đặt Sân Nhanh Chóng Và Tiện Lợi !') }}</p>
                     </div>
