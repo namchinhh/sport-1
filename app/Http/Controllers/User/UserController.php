@@ -63,7 +63,6 @@ class UserController extends Controller
         $places = Place::all();
         $data = [];
 
-
         foreach ($places as $place) {
 
             //getPosts for right-box
@@ -87,6 +86,7 @@ class UserController extends Controller
                 foreach ($products as $product) {
                     if ($product->place_id == $place->id) {
                         $productOption[] = Option::where('product_id', $product->id)->get();
+
                     }
                 }
                 $options = [];

@@ -85,42 +85,6 @@
                         </nav>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-                    <div class="post-sidebar_lpost">
-                        <form action="#" class="form-horizontal post-search form-wizzard">
-                            <div class="form-group has-feedback">
-                                <div class="search-group">
-                                    <input class="form-control" placeholder="Search ..."
-                                           type="search">
-                                </div>
-                                <i class="fa fa-search form-control-search"></i>
-                            </div>
-                        </form>
-
-                        <div class="sidebar-lpost_t">{{ __('Last posts') }}</div>
-                        <ul class="sidebar-lpost_ul">
-                            @for($j = 0; $j < count($data[count($data) - 3]); $j ++)
-
-                                <li class="sidebar-lpost_li">
-                                    <div class="lpost_img">
-                                        <a href="#"><img
-                                                    src="{!! asset('images/posts/'. $data[count($data) - 3][$j]->image ) !!}"
-                                                    alt=""></a>
-                                    </div>
-                                    <div class="lpost_info">
-                                        <div class="lpost_t"><a
-                                                    href="#">{!! $data[count($data) - 3][$j]->url !!}</a>
-                                        </div>
-                                        <div class="lpost_desc">{!! $data[count($data) - 3][$j]->content !!}
-                                        </div>
-                                    </div>
-                                </li>
-                            @endfor
-                        </ul>
-                    </div>
-                    <!-- /Sidebar tags -->
-                </div>
-
             </div>
         </div>
         </div>

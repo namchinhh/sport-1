@@ -8,7 +8,7 @@ class Booking extends Model
 {
     protected $guarded = ['id'];
 
-    protected $table = 'booking';
+    protected $table = 'bookings';
 
     public function user()
     {

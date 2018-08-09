@@ -42,8 +42,9 @@ class BookingController extends Controller
      */
     public function store($optionId)
     {
-        $option = Option::where('id', $optionId)->firstOrFail();
-        $product = Product::where('id', $option->id)->firstOrFail();
+
+        $option = Option::findOrFail($optionId);
+        $product = Product::findOrFail($option->product_id);
         $price = $option->price;
         $status = "pending";
         $date = new DateTime('today');
@@ -65,7 +66,7 @@ class BookingController extends Controller
                 'status' => 1,
             ]);
         } catch (\Exception $exception) {
-            return redirect()->back()->with('error', __('Has An Error!'));
+            return redirect()->back()->with('error', $exception->getMessage());
         }
         return redirect()->back()->with('status', 'Booking' . $optionId . 'has been done');
     }

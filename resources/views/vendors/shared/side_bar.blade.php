@@ -12,31 +12,42 @@
                 <a href="#"><i class="fa fa-circle text-success"></i>{{ __('Đang hoạt động') }}</a>
             </div>
         </div>
-        {!! Form::open(['method' => 'get', 'action' => 'Vendor\VendorsController@getSearch', 'class' => 'sidebar-form']) !!}
-        }
-        <div class="input-group">
-            {!! Form::text('search',null,array('class' => 'form-control')) !!}
-            <span class="input-group-btn">
-                    {!! Form::submit('search',array('id' => 'search-btn', 'class' => 'btn btn-flat')) !!}
-                <i class="fa fa-search"></i>
-              </span>
-        </div>
-    {!! Form::close() !!}
     <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu" data-widget="tree">
             <li class="header">{{ __('Menu') }}</li>
             <li class="active treeview">
             <li class="active treeview">
+
                 <a href="#">
                     <i class="fa fa-dashboard"></i> <span>{{ __('Bài đăng') }}</span>
                     <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
+            <i class="fa fa-angle-left pull-right"></i>
             </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li class="active"
-                    ><a href="#"><i class="fa fa-circle-o"></i>{{ __('Danh sách bài đăng') }}</a></li>
-                    <li><a href="#"><i class="fa fa-circle-o"></i>{{ __('Đăng bài mới') }}</a>
+                    <li class="active">
+                        <a href="{{ route('indexPost') }}"><i class="fa fa-circle-o"></i>{{ __('Danh sách bài đăng') }}
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('createPost') }}"><i class="fa fa-circle-o"></i>{{ __('Đăng bài mới') }}</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-files-o"></i>
+                    <span>{{ __('Cơ Sở ') }}</span>
+                    <span class="pull-right-container">
+            </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li>
+                        <a href="{{ route('showCreatePlaceForm') }}"><i
+                                    class="fa fa-circle-o"></i>{{ __('Thêm Cơ Sở Mới') }}</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('indexPlace') }}"><i class="fa fa-circle-o"></i>{{ __('Xem Các Cơ Sở ') }}</a>
                     </li>
                 </ul>
             </li>

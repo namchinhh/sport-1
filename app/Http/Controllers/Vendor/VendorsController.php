@@ -41,7 +41,7 @@ class VendorsController extends Controller
 
         $products->delete();
 
-        return redirect('/vendorlist')->with('msg', "Đã xóa thành công!");
+        return redirect()->back()->with('msg', "Đã xóa thành công!");
     }
 
     public function getSearch(Request $req)

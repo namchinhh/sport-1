@@ -63,7 +63,7 @@
                                 </li>
                                 <li><a href="#">{{ __('Đặt Sân Ngay  ') }}</a></li>
                                 @if(\Illuminate\Support\Facades\Auth::check())
-                                    <li><a href="#">{{ __('Đăng Xuất   ') }}</a></li>
+                                    <li><a href="{{ route('logout') }}">{{ __('Đăng Xuất   ') }}</a></li>
                                 @else
                                     <li><a href="#">{{ __('Đăng Nhập   ') }}</a></li>
                                     <li><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"

@@ -11,6 +11,8 @@
 |
 */
 
+Route::get('/', 'HomeController@index');
+
 Route::get('/index', 'HomeController@index')->name('getHome');
 
 Auth::routes();
@@ -45,7 +47,7 @@ Route::post('/vendorRegister', 'Auth\RegisterController@createVendor');
 
 Route::get('/vendorRegister', 'Auth\LoginController@getVendorRegister');
 
-Route::get('/logout', 'Auth\LoginController@logout');
+Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
 
 Route::group(array('prefix' => 'user', 'namespace' => 'User', 'middleware' => 'user'), function () {
 

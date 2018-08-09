@@ -27,14 +27,14 @@
                         @foreach($products as $product)
                             <li class="col-lg-4 col-md-4 col-sm-6 col-xs-12 best-room_li">
                                 <div class="best-room_img">
-                                    <a href="#"><img src="{{ asset('images/best-rooms/'.$product->thumbnail) }}" alt=""></a>
+                                    <a href="#"><img src="{{ asset('product_photo/thumbnail/'.$product->thumbnail) }}" alt=""></a>
                                     <div class="best-room_overlay">
                                         <div class="overlay_icn"><a href="#"></a></div>
                                     </div>
                                 </div>
                                 <div class="best-room-info">
                                     <div class="best-room_t">
-                                        {{ $product->description }}
+                                        {!! $product->description !!}
                                     </div>
                                     <div id="demo"></div>
                                     <div class="best-room_price">
