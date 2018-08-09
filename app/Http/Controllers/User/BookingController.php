@@ -42,12 +42,12 @@ class BookingController extends Controller
      */
     public function store($optionId)
     {
-
         $option = Option::findOrFail($optionId);
         $product = Product::findOrFail($option->product_id);
+        $vendor_id = $product->vendor_id;
         $price = $option->price;
         $status = "pending";
-        $date = new DateTime('today');
+        $date = new DateTime('now');
         $optionchoosen = $option->title;
         if (Auth::check()) {
             $user_id = Auth::user()->id;
@@ -64,6 +64,7 @@ class BookingController extends Controller
                 'date' => $date,
                 'option_chosen' => $optionchoosen,
                 'status' => 1,
+                'vendor_id' => $vendor_id,
             ]);
         } catch (\Exception $exception) {
             return redirect()->back()->with('error', $exception->getMessage());

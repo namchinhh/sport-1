@@ -5,17 +5,25 @@
             <table class="table">
                 <thead>
                 <tr>
-                    <th>Firstname</th>
-                    <th>Lastname</th>
-                    <th>Email</th>
+                    <th>{{ __('Tên Chủ Sân') }}</th>
+                    <th>{{ __('Cơ Sở / Mã Sân ') }}</th>
+                    <th>{{ __('Ngày Đặt ') }}</th>
+                    <th>{{ __('Giá Tiền') }}</th>
+                    <th>{{ __('Trạng Thái ') }}</th>
+                    <th>{{ __('Giờ Đặt ') }}</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td>July</td>
-                    <td>Dooley</td>
-                    <td>july@example.com</td>
-                </tr>
+                @for( $i = 0; $i <count($data); $i++)
+                    <tr>
+                        <td>{!! $data[$i]['vendorName'] !!}</td>
+                        <td>{!! $data[$i]['placeName'] !!} / {!! $data[$i]['productId'] !!}</td>
+                        <td>{!! $data[$i]['date'] !!}</td>
+                        <td>{!! $data[$i]['price'] !!}</td>
+                        <td>{!! $data[$i]['status'] !!}</td>
+                        <td>{!! $data[$i]['option'] !!}</td>
+                    </tr>
+                @endfor
                 </tbody>
             </table>
         </div>

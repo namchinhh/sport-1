@@ -36,12 +36,38 @@ class UserController extends Controller
     public function getBooked()
     {
         $userId = Auth::user()->id;
-        $bookings = Booking::whereUserId($userId);
+        $bookings = Booking::whereUserId($userId)->get();
         $data = [];
+        $dem = 0;
         foreach ($bookings as $booking) {
+            $products = Product::findOrFail($booking->product_id);
+            $vendorName = User::findOrFail($products->vendor_id)->name;
+            $placeName = Place::findOrFail($products->place_id)->name;
+            $data [$dem]['vendorName'] = $vendorName;
+            $data [$dem]['placeName'] = $placeName;
+            $data [$dem]['productId'] = $products->id;
+            $data[$dem]['option'] = $booking->option_chosen;
+            $data[$dem]['price'] = $booking->total_price;
+            $data[$dem]['date'] = $booking->date;
 
+            switch ($booking->status) {
+                case 1:
+                    $status = "Pending";
+                    break;
+                case 2:
+                    $status = "Success";
+                    break;
+                case 3:
+                    $status = "Cancel";
+                    break;
+                default:
+                    $status = "Pending";
+                    break;
+
+            }
+            $data[$dem]['status'] = $status;
+            $dem++;
         }
-
         return view('users.booked', compact(['data']));
     }
 

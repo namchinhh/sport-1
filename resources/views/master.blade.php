@@ -19,6 +19,7 @@
 @include('shared.header')
 
 @yield('content')
+@yield('scripts')
 
 @include('shared.footer')
 
