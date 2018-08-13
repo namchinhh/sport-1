@@ -157,14 +157,59 @@ class UserController extends Controller
     {
         $placeName = Place::where('id', $idPlace)->firstOrFail()->name;
         $products = Product::where('place_id', $idPlace)->get();
+
+        return view('users.products', compact('products'))->with('placeName', $placeName)->with('placeId', $idPlace);
+    }
+
+    public function getOption($idPlace, $month, $day, $year)
+    {
+
+        $products = Product::where('place_id', $idPlace)->get();
         $optionsOfProduct = [];
         foreach ($products as $product) {
             $options = Option::where('product_id', $product->id)->get();
-            $optionsOfProduct[$product->id] = $options;
+            foreach ($options as $option) {
+                $optionsOfProduct[] = $option;
+            }
         }
+        $titlePrice = [];
+        for ($i = 0; $i < count($optionsOfProduct); $i++) {
+            $titlePrice[$i]['title'] = $optionsOfProduct[$i]->title;
+            $titlePrice[$i]['price'] = $optionsOfProduct[$i]->price;
+            $titlePrice[$i]['id'] = $optionsOfProduct[$i]->id;
+        }
+        for ($i = 0; $i < count($titlePrice); $i++) {
+            $title = $titlePrice[$i]['title'];
+            $endHour = substr($title, 8, 5);
+            date_default_timezone_set('Asia/Ho_Chi_Minh');
+            $dateT = date("h:i A");
+            $price = $titlePrice[$i]['price'];
+            $id = $titlePrice[$i]['id'];
+            $this->formartDate($dateT, $title, $price, $id);
 
-        return view('users.products', compact('products'), compact('optionsOfProduct'))->with('placeName', $placeName);
+        }
     }
 
+    public function formartDate($date, $title, $price, $id)
+    {
+        $amOrPm = substr($date, 6, 2);
+        $h = substr($date, 0, 2);
+        $m = substr($date, 3, 2);
+        if ($amOrPm == "AM") {
+            if ($h == 12) {
+                $h = "00";
+            }
+        }
+        $now = $h . ':' . $m;
+        if ($now < $title) {
+            echo "<button class='btn-default' type = 'button' onclick ='myFunction($id);'> $title / Giá: $price </button>";
+            echo '<br/>';
+            echo '<br/>';
+        } else {
+            echo "<button disabled class='btn btn-default ' type = 'button' onclick ='myFunction($id);'> $title / Giá: $price </button>";
+            echo '<br/>';
+            echo '<br/>';
+        }
+    }
 
 }

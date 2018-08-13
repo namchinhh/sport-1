@@ -40,7 +40,7 @@ class BookingController extends Controller
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store($optionId, $day, $month, $year)
+    public function store($optionId, $month, $day, $year)
     {
         $date = $month . '/' . $day . '/' . $year;
         $dateD = strtotime($date);

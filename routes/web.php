@@ -27,6 +27,8 @@ Route::get('/getPlaces/{type?}', 'User\UserController@getPlaces')->name('getPlac
 
 Route::get('/getProducts/{idPlace?}', 'User\UserController@getProducts')->name('getProducts');
 
+Route::get('/getProducts/{idPlace?}/{mm?}/{dd?}/{yyyy?}', 'User\UserController@getOption')->name('getOptionFromDate');
+
 Route::get('/booked', 'User\UserController@getBooked')->name('getBooked');
 
 Route::get('/getPost/{id?}/show', 'User\UserController@getPostDetail')->name('getPostDetail');
