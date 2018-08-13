@@ -23,8 +23,6 @@ Route::post('/uploadProductImage', 'Vendor\UploadController@postImages')->name('
 
 Route::post('/removeProductImage', 'Vendor\UploadController@removeImages')->name('removeProductImage');
 
-Auth::routes();
-
 Route::get('/getPlaces/{type?}', 'User\UserController@getPlaces')->name('getPlaces');
 
 Route::get('/getProducts/{idPlace?}', 'User\UserController@getProducts')->name('getProducts');

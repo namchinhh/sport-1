@@ -39,7 +39,7 @@
                                     <div id="demo"></div>
                                     <div class="best-room_price">
                                         @foreach($optionsOfProduct[$product->id] as $item)
-                                            <div>
+                                            <div style="min-width: 20px">
                                                 {!! Form::button(' <span>'.$item->title.'</span>'.'/'.
                                                 __('Giá:') . $item->price . '<br/>',
                                                 array('id' => 'pop_button','class' => 'btn btn-primary', 'type' => 'button','onclick' => 'myFunction('.$item->id.');')) !!}

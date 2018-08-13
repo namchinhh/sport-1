@@ -23,7 +23,7 @@ class ProductController extends Controller
     {
         $vendorId = Auth::user()->id;
         $placesCollection = Place::whereVendorId($vendorId)->get();
-        $places=[];
+        $places = [];
         foreach ($placesCollection as $placeModel) {
             $places[$placeModel->id] = $placeModel->name;
         }
@@ -73,7 +73,8 @@ class ProductController extends Controller
                 'type' => $request->type,
                 'description' => $request->description,
                 'status' => $request->status,
-                'place_id'=>$request->placeId
+                'place_id' => $request->placeId,
+                'name' => $request->name,
             ];
             if ($request->thumbnail) {
                 $photoName = time() . '.' . $request->thumbnail->getClientOriginalExtension();

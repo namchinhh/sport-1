@@ -6,6 +6,7 @@ use App\Product;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class VendorsController extends Controller
 {
@@ -25,8 +26,7 @@ class VendorsController extends Controller
      */
     public function getHomeData()
     {
-        $products = DB::table('products')->get();
-
+        $products = Product::findOrFail(Auth::user()->id)->get();
         return view('vendors.products.list', compact('products'));
     }
 
@@ -50,7 +50,6 @@ class VendorsController extends Controller
             ->orwhere('description', 'like', '%' . $req->search . '%')
             ->orwhere('status', 'like', '%' . $req->search . '%')
             ->get();
-
         return view('vendors.products.search', compact('products'));
     }
 }

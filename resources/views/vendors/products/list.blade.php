@@ -22,6 +22,7 @@
                             <thead>
                             <tr>
                                 <th>{{ __("Id") }}</th>
+                                <th>{{ __("Tên Sản Phẩm ") }}</th>
                                 <th>{{ __("Thông tin") }}</th>
                                 <th>{{ __("Trạng thái") }}</th>
                                 <th>{{ __("Khởi tạo") }}</th>
@@ -42,6 +43,7 @@
                                 @endphp
                                 <tr>
                                     <td>{{ $products[$i]->id }}</td>
+                                    <td>{{ $products[$i]->name }}</td>
                                     <td>{!! $products[$i]->description !!}</td>
                                     <td>{{ $statusString }}</td>
                                     <td>{{ $products[$i]->created_at }}</td>

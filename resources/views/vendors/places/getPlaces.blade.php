@@ -38,17 +38,17 @@
                             <th>{{ __('Address') }}</th>
                             <th colspan="2" class="text-center">{{ __('Action') }}</th>
                         </tr>
-                        @foreach($places as $place)
-                            {!! Form::model($place, array('route' => array('editPlace', $place->id),'method' =>'post')) !!}
+                        @foreach($places as $places)
+                            {!! Form::model($places, array('route' => array('editPlace', $places->id),'method' =>'post')) !!}
                             {!! csrf_field() !!}
                             <tr>
-                                <td>{{ str_limit($place->name, $limit = 30, $end = '...') }}</td>
-                                <td>{{ str_limit($place->address, $limit = 30, $end = '...') }}</td>
+                                <td>{{ str_limit($places->name, $limit = 30, $end = '...') }}</td>
+                                <td>{{ str_limit($places->address, $limit = 30, $end = '...') }}</td>
                                 </td>
                                 <td>
                                     {!! Form::submit(__('Edit Place'),['class' => 'btn btn-block btn-info']) !!}
                                 </td>
-                                <td><a href="{{route('destroyPlace', array('id' => $place->id))}}"
+                                <td><a href="{{route('destroyPlace', array('id' => $places->id))}}"
                                        class="btn btn-danger float-lg-right">{{__('Xóa Cơ Sở')}}</a>
                                 </td>
                             </tr>

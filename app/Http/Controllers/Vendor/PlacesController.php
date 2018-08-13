@@ -18,7 +18,7 @@ class PlacesController extends Controller
     public function index()
     {
         //
-        $places = DB::table('places')->get();
+        $places = Place::whereVendorId(Auth::user()->id)->get();
         return view('vendors.places.getPlaces', compact('places'));
     }
 

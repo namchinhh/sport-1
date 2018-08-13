@@ -74,6 +74,13 @@
 
                     <div class="form-group row">
                         <div class="col-xs-3">
+                            {!! Form::label('name', trans('Tên Sản Phẩm : ')) !!}
+                            {!! Form::text('name', $product->name, ['class'=>'form-control','required'=>'true', 'placeholder'=>trans('Tên Sản Phẩm')]) !!}
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-xs-3">
                             {!! Form::label('status', trans('Hoạt động: ')) !!}
                             {!! Form::checkbox('status', '1', ['class'=>'js-switch', 'checked'=>"checked"]) !!}
                         </div>
@@ -130,7 +137,8 @@
                                     <td>
                                         {!! Form::hidden('options[id][]', $option->id) !!}
                                         {!! Form::text('options[title][]', $option->title,
-                                           ['class'=>'form-control', 'required'=>'true', 'placeholder'=>trans('Nhãn')]) !!} &nbsp;
+                                           ['class'=>'form-control', 'required'=>'true', 'placeholder'=>trans('Nhãn')]) !!}
+                                        &nbsp;
                                         {!! Form::text('options[price][]', $option->price,
                                             ['class'=>'form-control', 'required'=>'true', 'placeholder'=>trans('Giá')]
                                         ) !!} &nbsp;
@@ -224,20 +232,20 @@
                     file.productImage = response;
                 });
 
-                @if(@$images)
+                        @if(@$images)
 
-                    var images = JSON.parse("{{ $images }}".replace(/&quot;/ig, '"'), true);
+                var images = JSON.parse("{{ $images }}".replace(/&quot;/ig, '"'), true);
 
-                    console.log(images);
-                    for (var image in images) {
+                console.log(images);
+                for (var image in images) {
 
-                        var mockFile = {name: image, size: images[image]};
+                    var mockFile = {name: image, size: images[image]};
 
-                        myDropzone.emit("addedfile", mockFile);
+                    myDropzone.emit("addedfile", mockFile);
 
-                        myDropzone.emit("thumbnail", mockFile, "{{ asset('product_photo/slider') }}/" + image);
+                    myDropzone.emit("thumbnail", mockFile, "{{ asset('product_photo/slider') }}/" + image);
 
-                    }
+                }
 
                 @endif
             },
