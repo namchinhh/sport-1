@@ -13,3 +13,4 @@ yarn-error.log
 .env
 app/Providers/AppServiceProvider.php
 /public/bower_components
+package-lock.json

@@ -12,10 +12,18 @@
     "node_modules",
     "bower_components",
     "test",
-    "tests"
+    "tests",
+    "public/bower_components/"
   ],
   "dependencies": {
     "template_delux_hotel": "*",
-    "admin-lte":"*"
+    "jquery": "~1.4.1",
+    "admin-lte": "*",
+    "foundation": "x"
+  },
+  "private": true,
+  "resolutions": {
+    "jquery": "~1.4.1",  
+    "font-awesome": "*"
   }
 }

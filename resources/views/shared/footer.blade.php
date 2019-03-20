@@ -2,7 +2,6 @@
     <div class="footer-top">
         <div class="container">
             <div class="row">
-<<<<<<< HEAD
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                     <div class="footer-top_logo"><a href="index-2.html">
                             <img src="assets/images/logo/logo.png" alt="Footer logo"/></a></div>
@@ -17,17 +16,6 @@
                         <div><i class="fa fa-home"></i> {{ __('Location:') }} <span>{{ __('433 Trần Khất Trân, Hà Nội') }}</span></div>
                     </div>
 
-=======
-                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                    <div class="footer-top_logo"><a href=""><img src="{!! asset('bower_components/template_delux_hotel/assets/images/logo/logo.png') !!}" alt="Footer logo"/></a></div>
-                    <div class="footer-top_txt">
-                    </div>
-                    <div class="footer-top_address">
-                        <div><i class="fa fa-phone"></i>{{ __('Phone')}} : <span>8 (043) 567 - 89 - 30</span></div>
-                        <div><i class="fa fa-envelope-o"></i>{{ __('E-mail')}} : <span><a href="mailto:support@email.com">support@email.com</a></span></div>
-                        <div><i class="fa fa-home"></i>{{ __('Location')}} : <span>455 Martinson, Los Angeles</span></div>
-                    </div>
->>>>>>> ad4d17047d6aa006df585af5fd358a5a02728aa7
                 </div>
             </div>
         </div>
