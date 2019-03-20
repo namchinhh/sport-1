@@ -17,3 +17,6 @@ app/Providers/AppServiceProvider.php
 =======
 /public
 >>>>>>> STYLE-VENDOR: add side menu bar
+.env.example
+composer.lock
+package-lock.json
