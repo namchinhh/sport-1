@@ -16,3 +16,5 @@ app/Providers/AppServiceProvider.php
 package-lock.json
 composer.lock
 .env.example
+.env.example
+composer.lock
